@@ -3,6 +3,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import AuthorCardCompact from '../../components/AuthorCardCompact.astro';
+import { ralph } from '../../data/author';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -35,6 +37,9 @@ const fmt = (d: Date) =>
           {post.data.readingTime && (
             <span class="font-mono text-[0.72rem] text-ink-faint">· {post.data.readingTime}</span>
           )}
+          <a href={`/blog/author/${ralph.slug}`} class="font-mono text-[0.72rem] uppercase tracking-wider text-ink-faint transition-colors hover:text-lime">
+            · By {ralph.name}
+          </a>
         </div>
         <h1 class="display text-balance text-[clamp(2.2rem,6vw,5rem)]">{post.data.title}</h1>
         <p class="reveal mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-ink-muted">
@@ -46,6 +51,7 @@ const fmt = (d: Date) =>
         <div class="prose-gl">
           <Content />
         </div>
+        <AuthorCardCompact />
       </div>
     </article>
 

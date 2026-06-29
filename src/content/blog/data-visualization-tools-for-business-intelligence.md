@@ -5,7 +5,7 @@ pubDate: 2023-01-04
 category: "SEO"
 tags:
   - "SEO"
-author: "Growth Local"
+author: "Ralph Marino"
 readingTime: "14 min read"
 draft: false
 ---

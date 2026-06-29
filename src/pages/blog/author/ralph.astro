@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import AuthorAvatar from '../../../components/AuthorAvatar.astro';
+import { ralph } from '../../../data/author';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base
+  title={`${ralph.name} — ${ralph.role} · Growth Local`}
+  description={ralph.bioShort}
+>
+  <Nav />
+  <main id="main">
+    <!-- Author hero -->
+    <section class="relative overflow-hidden pb-[clamp(2.5rem,6vw,4.5rem)] pt-36 md:pt-44">
+      <div
+        class="pointer-events-none absolute -right-[6%] top-[6%] -z-0 h-[44vw] w-[44vw] rounded-full opacity-[0.13] blur-[120px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10">
+        <a href="/blog" class="eyebrow reveal mb-10 inline-flex items-center gap-2 transition-colors hover:text-lime">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          The Journal
+        </a>
+
+        <div class="grid items-center gap-10 md:grid-cols-12">
+          <div class="md:col-span-3">
+            <div class="group reveal inline-flex flex-col items-start gap-3">
+              <AuthorAvatar size={150} />
+              <span class="font-mono text-[0.66rem] uppercase tracking-[0.18em] text-ink-faint">
+                ✶ hover me
+              </span>
+            </div>
+          </div>
+
+          <div class="md:col-span-9">
+            <p class="eyebrow reveal mb-5">
+              <span class="text-lime">Founder & operator</span> · Growth Local
+            </p>
+            <h1 class="display text-[clamp(2.6rem,8vw,7rem)]">
+              <span class="line-mask"><span>{ralph.name}</span></span>
+            </h1>
+            <p class="reveal mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl" style="--reveal-delay:120ms">
+              {ralph.role} — and the person who runs Growth Local day to day.
+            </p>
+            <div class="reveal mt-8 flex flex-wrap items-center gap-4" style="--reveal-delay:200ms">
+              <a href={ralph.linkedin} target="_blank" rel="noopener" class="btn btn-primary">
+                Connect on LinkedIn
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="/#contact" class="btn btn-ghost">Work with Ralph</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio -->
+    <section class="border-t border-line py-[clamp(3rem,7vw,6rem)]">
+      <div class="container-wide grid gap-10 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="eyebrow reveal sticky top-28">About Ralph</p>
+        </div>
+        <div class="md:col-span-9 max-w-3xl">
+          {
+            ralph.bio.map((para, i) => (
+              <p
+                class="reveal text-pretty text-lg leading-relaxed text-ink-muted [&:not(:first-child)]:mt-6"
+                style={`--reveal-delay:${i * 80}ms`}
+              >
+                {para}
+              </p>
+            ))
+          }
+          <dl class="reveal mt-10 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
+            <div class="bg-base-900 p-6">
+              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Experience</dt>
+              <dd class="display mt-2 text-3xl text-lime">8+ yrs</dd>
+            </div>
+            <div class="bg-base-900 p-6">
+              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Focus</dt>
+              <dd class="display mt-2 text-3xl">Technical SEO</dd>
+            </div>
+            <div class="bg-base-900 p-6">
+              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Background</dt>
+              <dd class="display mt-2 text-3xl">CS degree</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Posts by Ralph -->
+    <section class="border-t border-line py-[clamp(3rem,7vw,6rem)]">
+      <div class="container-wide">
+        <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <h2 class="display text-[clamp(1.8rem,5vw,3.6rem)]">
+            <span class="line-mask"><span>Written by Ralph</span></span>
+          </h2>
+          <p class="eyebrow reveal mb-2">{posts.length} articles</p>
+        </div>
+        <ul class="border-t border-line">
+          {
+            posts.map((post, i) => (
+              <li class="group border-b border-line">
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="reveal grid grid-cols-12 items-baseline gap-4 py-7 transition-colors"
+                  style={`--reveal-delay:${(i % 4) * 60}ms`}
+                >
+                  <div class="col-span-12 flex items-center gap-4 md:col-span-3">
+                    <span class="font-mono text-[0.72rem] uppercase tracking-wider text-lime">{post.data.category}</span>
+                    <span class="font-mono text-[0.72rem] text-ink-faint">{fmt(post.data.pubDate)}</span>
+                  </div>
+                  <h3 class="col-span-12 font-display text-[clamp(1.3rem,2.6vw,2rem)] font-semibold leading-tight tracking-tightest transition-colors duration-300 group-hover:text-lime md:col-span-9">
+                    {post.data.title}
+                  </h3>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
