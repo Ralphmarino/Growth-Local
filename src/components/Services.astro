@@ -1,0 +1,80 @@
+---
+const services = [
+  {
+    no: '01',
+    title: 'Web Development',
+    blurb:
+      'Sites and platforms engineered to perform. Fast, accessible, and built to scale — from editorial marketing sites to full web applications.',
+    tags: ['Next.js / Astro', 'Headless CMS', 'Web Apps', 'Core Web Vitals'],
+  },
+  {
+    no: '02',
+    title: 'AI Consulting',
+    blurb:
+      'Practical AI that moves the needle. We design and ship automations, assistants, and data workflows your team will actually use — no hype, just leverage.',
+    tags: ['LLM Integration', 'Automation', 'RAG & Search', 'Strategy'],
+  },
+  {
+    no: '03',
+    title: 'SEO',
+    blurb:
+      'Visibility that compounds. Technical SEO, content strategy, and local search that put you in front of the people already looking for you.',
+    tags: ['Technical SEO', 'Content', 'Local Search', 'Authority'],
+  },
+  {
+    no: '04',
+    title: 'Digital Marketing',
+    blurb:
+      'Campaigns that convert. Paid, social, email, and analytics working as one system — pointed at measurable, durable growth.',
+    tags: ['Paid Media', 'Lifecycle', 'Analytics', 'Conversion'],
+  },
+];
+---
+
+<section id="services" class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+  <div class="container-wide">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+      <h2 class="display text-[clamp(2.2rem,6.5vw,5.5rem)]">
+        <span class="line-mask"><span>What we do</span></span>
+      </h2>
+      <p class="eyebrow reveal mb-3">
+        <span class="text-lime">[02]</span> &nbsp;Capabilities / Four disciplines, one team
+      </p>
+    </div>
+
+    <ul class="border-t border-line">
+      {
+        services.map((s) => (
+          <li class="group relative border-b border-line">
+            <div class="reveal grid cursor-default grid-cols-12 items-center gap-4 py-7 transition-colors duration-500 md:py-9">
+              <span class="col-span-2 font-mono text-sm text-ink-faint transition-colors duration-300 group-hover:text-lime md:col-span-1">
+                {s.no}
+              </span>
+              <h3 class="display col-span-10 text-[clamp(1.9rem,5.2vw,4rem)] leading-none text-ink transition-transform duration-500 group-hover:translate-x-2 group-hover:text-lime md:col-span-6">
+                {s.title}
+              </h3>
+              <div class="col-span-12 md:col-span-5">
+                <div class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-48 group-hover:opacity-100 md:max-h-0">
+                  <p class="text-pretty pt-1 leading-relaxed text-ink-muted">
+                    {s.blurb}
+                  </p>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {s.tags.map((t) => (
+                      <span class="rounded-full border border-line px-3 py-1 font-mono text-[0.68rem] uppercase tracking-wide text-ink-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {/* Always-visible blurb on mobile/touch where hover is unreliable */}
+                <p class="text-pretty pt-1 leading-relaxed text-ink-muted md:hidden">
+                  {s.blurb}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

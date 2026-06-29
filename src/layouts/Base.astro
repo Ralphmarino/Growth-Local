@@ -1,0 +1,144 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Growth Local — Web Development, AI & Growth Studio · Colorado Springs',
+  description = 'Growth Local is a Colorado Springs digital studio building high-performance websites, practical AI, and compounding growth for ambitious brands nationwide.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0A0A0B" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/example.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts: characterful grotesque display + clean body + technical mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1000] focus:rounded-full focus:bg-lime focus:px-5 focus:py-2 focus:font-mono focus:text-sm focus:text-base-900"
+      >Skip to content</a
+    >
+    <div class="grain" aria-hidden="true"></div>
+    <slot />
+
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      const prefersReduced = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      // --- Scroll-reveal (works regardless of motion preference; CSS no-ops it when reduced) ---
+      const revealEls = document.querySelectorAll<HTMLElement>(
+        '.reveal, .line-mask'
+      );
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      revealEls.forEach((el) => io.observe(el));
+
+      if (!prefersReduced) {
+        // --- Smooth scroll ---
+        const lenis = new Lenis({
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        // Anchor links route through Lenis
+        document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+          a.addEventListener('click', (e) => {
+            const id = a.getAttribute('href');
+            if (!id || id === '#') return;
+            const target = document.querySelector(id);
+            if (target) {
+              e.preventDefault();
+              lenis.scrollTo(target as HTMLElement, { offset: -12 });
+            }
+          });
+        });
+
+        // --- Hero parallax + marquee scrub ---
+        gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
+          const speed = parseFloat(el.dataset.parallax || '0.2');
+          gsap.to(el, {
+            yPercent: speed * 100,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          });
+        });
+
+        // Counter roll-up for stat numbers.
+        // The real value is already in the markup (correct for no-JS / reduced
+        // motion); here we reset to 0 and animate up only when motion is allowed.
+        gsap.utils.toArray<HTMLElement>('[data-count]').forEach((el) => {
+          const end = parseFloat(el.dataset.count || '0');
+          const obj = { v: 0 };
+          el.textContent = '0';
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            once: true,
+            onEnter: () =>
+              gsap.to(obj, {
+                v: end,
+                duration: 1.6,
+                ease: 'power2.out',
+                onUpdate: () => {
+                  el.textContent =
+                    end % 1 === 0
+                      ? Math.round(obj.v).toString()
+                      : obj.v.toFixed(1);
+                },
+              }),
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

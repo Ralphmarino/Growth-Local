@@ -1,0 +1,26 @@
+---
+const stats = [
+  { value: '120', suffix: '%', label: 'Avg. organic traffic lift' },
+  { value: '40', suffix: '+', label: 'Projects shipped' },
+  { value: '98', suffix: '', label: 'Avg. Lighthouse score' },
+  { value: '8', suffix: ' yrs', label: 'Studio craft' },
+];
+---
+
+<section class="border-t border-line bg-base-800/40 py-[clamp(3.5rem,7vw,6.5rem)]">
+  <div class="container-wide grid gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      stats.map((s, i) => (
+        <div class="reveal border-l border-line pl-6" style={`--reveal-delay:${i * 80}ms`}>
+          <p class="display flex items-baseline text-[clamp(3rem,8vw,6rem)] leading-none text-ink">
+            <span data-count={s.value}>{s.value}</span>
+            <span class="text-lime">{s.suffix}</span>
+          </p>
+          <p class="mt-4 max-w-[12rem] text-sm leading-snug text-ink-muted">
+            {s.label}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+const items = [
+  'Web Development',
+  'AI Consulting',
+  'SEO',
+  'Digital Marketing',
+  'Brand Systems',
+  'Web Apps',
+  'Automation',
+  'Analytics',
+];
+---
+
+<section class="border-y border-line py-6 md:py-8" aria-label="Capabilities">
+  <div class="relative flex overflow-hidden">
+    <div class="marquee-track flex shrink-0 animate-marquee items-center gap-0">
+      {
+        [...items, ...items].map((item) => (
+          <span class="flex items-center whitespace-nowrap font-display text-[clamp(1.6rem,3.4vw,2.6rem)] font-semibold tracking-tightest">
+            <span class="px-7 text-ink/90">{item}</span>
+            <span class="text-lime">✶</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

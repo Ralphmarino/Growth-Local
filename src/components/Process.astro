@@ -1,0 +1,53 @@
+---
+const steps = [
+  {
+    no: '01',
+    title: 'Discover',
+    body: 'We dig into your market, your numbers, and your goals — and agree on what winning actually looks like.',
+  },
+  {
+    no: '02',
+    title: 'Design',
+    body: 'Strategy becomes a clear plan: positioning, architecture, and a design direction built for this brief, not a template.',
+  },
+  {
+    no: '03',
+    title: 'Build',
+    body: 'We engineer it — fast, accessible, and measurable — with you in the loop at every meaningful step.',
+  },
+  {
+    no: '04',
+    title: 'Grow',
+    body: 'Launch is the start. We optimize against real data so results keep compounding long after go-live.',
+  },
+];
+---
+
+<section class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+  <div class="container-wide">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+      <h2 class="display text-[clamp(2.2rem,6.5vw,5.5rem)]">
+        <span class="line-mask"><span>How we work</span></span>
+      </h2>
+      <p class="eyebrow reveal mb-3">
+        <span class="text-lime">[04]</span> &nbsp;A process built for outcomes
+      </p>
+    </div>
+
+    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((s, i) => (
+          <div
+            class="reveal group relative bg-base-900 p-7 transition-colors duration-500 hover:bg-base-800 md:p-9"
+            style={`--reveal-delay:${i * 90}ms`}
+          >
+            <span class="font-mono text-sm text-lime">{s.no}</span>
+            <h3 class="display mt-6 text-3xl text-ink md:text-4xl">{s.title}</h3>
+            <p class="mt-4 text-pretty leading-relaxed text-ink-muted">{s.body}</p>
+            <span class="absolute bottom-7 right-7 h-2 w-2 rounded-full bg-line transition-colors duration-500 group-hover:bg-lime"></span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

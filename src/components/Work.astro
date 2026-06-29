@@ -1,0 +1,62 @@
+---
+const projects = [
+  { name: 'Summit Financial', kind: 'Brand & Web Platform', tag: 'Web', year: '2025' },
+  { name: 'Front Range Health', kind: 'Patient Portal + SEO', tag: 'Web · SEO', year: '2025' },
+  { name: 'Apex Outdoor Co.', kind: 'E-commerce Growth', tag: 'Marketing', year: '2024' },
+  { name: 'Vantage AI', kind: 'Product Marketing Site', tag: 'Web · AI', year: '2024' },
+  { name: 'Pikes Peak Realty', kind: 'Lead-Gen System', tag: 'SEO · Ads', year: '2024' },
+  { name: 'Cardinal Robotics', kind: 'AI Assistant & Docs', tag: 'AI', year: '2023' },
+];
+---
+
+<section id="work" class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+  <div class="container-wide">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+      <h2 class="display text-[clamp(2.2rem,6.5vw,5.5rem)]">
+        <span class="line-mask"><span>Selected work</span></span>
+      </h2>
+      <p class="eyebrow reveal mb-3">
+        <span class="text-lime">[03]</span> &nbsp;Recent engagements
+      </p>
+    </div>
+
+    <div class="grid gap-x-7 gap-y-12 sm:grid-cols-2">
+      {
+        projects.map((p, i) => (
+          <a
+            href="#contact"
+            class="reveal group block"
+            style={`--reveal-delay:${(i % 2) * 90}ms`}
+          >
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-base-800">
+              <img
+                src="/example.png"
+                alt={`${p.name} — ${p.kind}`}
+                loading="lazy"
+                width="800"
+                height="600"
+                class="h-full w-full object-cover opacity-90 transition-all duration-700 ease-out will-change-transform group-hover:scale-[1.04] group-hover:opacity-100"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-base-900/70 via-transparent to-transparent"></div>
+              <span class="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+            <div class="mt-5 flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-semibold tracking-tightest transition-colors duration-300 group-hover:text-lime md:text-[1.7rem]">
+                  {p.name}
+                </h3>
+                <p class="mt-1 text-ink-muted">{p.kind}</p>
+              </div>
+              <div class="text-right">
+                <span class="font-mono text-[0.7rem] uppercase tracking-wider text-lime">{p.tag}</span>
+                <span class="mt-1 block font-mono text-[0.7rem] text-ink-faint">{p.year}</span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+const links = [
+  { label: 'Work', href: '#work' },
+  { label: 'Services', href: '#services' },
+  { label: 'Studio', href: '#studio' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 transition-transform duration-500"
+  data-nav
+>
+  <nav class="container-wide flex items-center justify-between py-5">
+    <a href="#top" class="group flex items-center gap-2.5" aria-label="Growth Local — home">
+      <span class="block h-2.5 w-2.5 rounded-full bg-lime transition-transform duration-300 group-hover:scale-125"></span>
+      <span class="font-display text-lg font-bold tracking-tightest">Growth&nbsp;Local</span>
+    </a>
+
+    <div class="hidden items-center gap-9 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="group relative font-mono text-[0.78rem] uppercase tracking-[0.12em] text-ink-muted transition-colors hover:text-ink"
+          >
+            {l.label}
+            <span class="absolute -bottom-1.5 left-0 h-px w-0 bg-lime transition-all duration-300 group-hover:w-full" />
+          </a>
+        ))
+      }
+    </div>
+
+    <a href="#contact" class="btn btn-primary hidden md:inline-flex">
+      Start a project
+    </a>
+
+    <a
+      href="#contact"
+      class="btn btn-ghost md:hidden !px-4 !py-2 !text-[0.7rem]"
+      aria-label="Start a project"
+    >
+      Start
+    </a>
+  </nav>
+</header>
+
+<script>
+  // Hide nav on scroll-down, reveal on scroll-up
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  let last = 0;
+  if (nav) {
+    window.addEventListener(
+      'scroll',
+      () => {
+        const y = window.scrollY;
+        if (y > 120 && y > last) nav.style.transform = 'translateY(-100%)';
+        else nav.style.transform = 'translateY(0)';
+        nav.style.backgroundColor =
+          y > 40 ? 'rgba(10,10,11,0.72)' : 'transparent';
+        nav.style.backdropFilter = y > 40 ? 'blur(12px)' : 'none';
+        nav.style.borderBottom =
+          y > 40 ? '1px solid rgba(244,244,239,0.08)' : '1px solid transparent';
+        last = y;
+      },
+      { passive: true }
+    );
+  }
+</script>

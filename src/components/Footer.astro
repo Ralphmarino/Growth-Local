@@ -1,0 +1,71 @@
+---
+const year = new Date().getFullYear();
+const nav = [
+  { label: 'Work', href: '#work' },
+  { label: 'Services', href: '#services' },
+  { label: 'Studio', href: '#studio' },
+  { label: 'Contact', href: '#contact' },
+];
+const social = [
+  { label: 'LinkedIn', href: '#' },
+  { label: 'Instagram', href: '#' },
+  { label: 'Dribbble', href: '#' },
+  { label: 'GitHub', href: '#' },
+];
+---
+
+<footer class="border-t border-line">
+  <div class="container-wide py-14 md:py-20">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <a href="#top" class="flex items-center gap-2.5">
+          <span class="block h-2.5 w-2.5 rounded-full bg-lime"></span>
+          <span class="font-display text-xl font-bold tracking-tightest">Growth&nbsp;Local</span>
+        </a>
+        <p class="mt-6 max-w-sm text-pretty leading-relaxed text-ink-muted">
+          A digital studio in Colorado Springs building web, AI, and growth
+          systems for ambitious brands nationwide.
+        </p>
+      </div>
+
+      <nav class="md:col-span-3" aria-label="Footer">
+        <p class="eyebrow mb-5">Sitemap</p>
+        <ul class="space-y-3">
+          {nav.map((l) => (
+            <li>
+              <a href={l.href} class="text-ink-muted transition-colors hover:text-lime">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="md:col-span-2">
+        <p class="eyebrow mb-5">Social</p>
+        <ul class="space-y-3">
+          {social.map((l) => (
+            <li>
+              <a href={l.href} class="text-ink-muted transition-colors hover:text-lime">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="eyebrow mb-5">Studio</p>
+        <address class="space-y-3 not-italic text-ink-muted">
+          <p>Colorado Springs, CO</p>
+          <a href="mailto:hello@growthlocal.com" class="block transition-colors hover:text-lime">hello@growthlocal.com</a>
+          <a href="tel:+17195550139" class="block transition-colors hover:text-lime">(719) 555-0139</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 font-mono text-[0.72rem] uppercase tracking-wider text-ink-faint md:flex-row md:items-center">
+      <p>© {year} Growth Local. All rights reserved.</p>
+      <p class="flex items-center gap-2">
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-lime"></span>
+        Local roots · National reach
+      </p>
+    </div>
+  </div>
+</footer>

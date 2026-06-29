@@ -1,0 +1,21 @@
+{
+  "name": "growth-local",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Growth Local — premium digital studio site (Colorado Springs, national reach)",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18",
+    "@astrojs/tailwind": "^5.1.4",
+    "tailwindcss": "^3.4.17",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18"
+  }
+}
