@@ -1,0 +1,66 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'blog'> };
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base title={`${post.data.title} · Growth Local`} description={post.data.description}>
+  <Nav />
+  <main id="main">
+    <article class="pt-36 md:pt-44">
+      <header class="container-wide max-w-4xl">
+        <a href="/blog" class="eyebrow reveal mb-10 inline-flex items-center gap-2 transition-colors hover:text-lime">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All posts
+        </a>
+        <div class="reveal mb-6 flex flex-wrap items-center gap-4">
+          <span class="font-mono text-[0.72rem] uppercase tracking-wider text-lime">{post.data.category}</span>
+          <span class="font-mono text-[0.72rem] text-ink-faint">{fmt(post.data.pubDate)}</span>
+          {post.data.readingTime && (
+            <span class="font-mono text-[0.72rem] text-ink-faint">· {post.data.readingTime}</span>
+          )}
+        </div>
+        <h1 class="display text-balance text-[clamp(2.2rem,6vw,5rem)]">{post.data.title}</h1>
+        <p class="reveal mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-ink-muted">
+          {post.data.description}
+        </p>
+      </header>
+
+      <div class="container-wide mt-14 max-w-3xl border-t border-line pt-12 md:mt-20">
+        <div class="prose-gl">
+          <Content />
+        </div>
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <section class="mt-[clamp(4rem,9vw,8rem)] border-t border-line py-[clamp(3.5rem,8vw,7rem)]">
+      <div class="container-wide max-w-3xl">
+        <h2 class="display text-[clamp(1.8rem,5vw,3.6rem)]">
+          Want this kind of thinking applied to your site?
+        </h2>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/#contact" class="btn btn-primary">Start a project</a>
+          <a href="/services/seo" class="btn btn-ghost">Explore SEO services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

@@ -1,10 +1,15 @@
 ---
+const isHome = Astro.url.pathname === '/';
+const a = (hash: string) => (isHome ? hash : `/${hash}`);
+
 const year = new Date().getFullYear();
 const nav = [
-  { label: 'Work', href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Studio', href: '#studio' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: a('#work') },
+  { label: 'Services', href: a('#services') },
+  { label: 'SEO', href: '/services/seo' },
+  { label: 'Studio', href: a('#studio') },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: a('#contact') },
 ];
 const social = [
   { label: 'LinkedIn', href: '#' },
@@ -18,7 +23,7 @@ const social = [
   <div class="container-wide py-14 md:py-20">
     <div class="grid gap-12 md:grid-cols-12">
       <div class="md:col-span-5">
-        <a href="#top" class="flex items-center gap-2.5">
+        <a href="/" class="flex items-center gap-2.5">
           <span class="block h-2.5 w-2.5 rounded-full bg-lime"></span>
           <span class="font-display text-xl font-bold tracking-tightest">Growth&nbsp;Local</span>
         </a>

@@ -1,9 +1,13 @@
 ---
+const isHome = Astro.url.pathname === '/';
+const a = (hash: string) => (isHome ? hash : `/${hash}`);
+
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Studio', href: '#studio' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: a('#work') },
+  { label: 'Services', href: a('#services') },
+  { label: 'SEO', href: '/services/seo' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: a('#contact') },
 ];
 ---
 
@@ -12,12 +16,12 @@ const links = [
   data-nav
 >
   <nav class="container-wide flex items-center justify-between py-5">
-    <a href="#top" class="group flex items-center gap-2.5" aria-label="Growth Local — home">
+    <a href="/" class="group flex items-center gap-2.5" aria-label="Growth Local — home">
       <span class="block h-2.5 w-2.5 rounded-full bg-lime transition-transform duration-300 group-hover:scale-125"></span>
       <span class="font-display text-lg font-bold tracking-tightest">Growth&nbsp;Local</span>
     </a>
 
-    <div class="hidden items-center gap-9 md:flex">
+    <div class="hidden items-center gap-8 md:flex">
       {
         links.map((l) => (
           <a
@@ -31,12 +35,12 @@ const links = [
       }
     </div>
 
-    <a href="#contact" class="btn btn-primary hidden md:inline-flex">
+    <a href={a('#contact')} class="btn btn-primary hidden md:inline-flex">
       Start a project
     </a>
 
     <a
-      href="#contact"
+      href={a('#contact')}
       class="btn btn-ghost md:hidden !px-4 !py-2 !text-[0.7rem]"
       aria-label="Start a project"
     >

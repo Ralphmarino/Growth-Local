@@ -26,6 +26,31 @@ npm run build    # production build to ./dist
 npm run preview  # preview the production build
 ```
 
+## Pages
+
+| Route | Source | Purpose |
+|-------|--------|---------|
+| `/` | `src/pages/index.astro` | Single-page home scroller |
+| `/services/seo` | `src/pages/services/seo.astro` | Dedicated SEO services page (7 disciplines) |
+| `/blog` | `src/pages/blog/index.astro` | Blog index |
+| `/blog/<slug>` | `src/pages/blog/[...slug].astro` | Blog post (from content collection) |
+| `/sitemap-index.xml` | `@astrojs/sitemap` | Auto-generated sitemap |
+| `/robots.txt` | `public/robots.txt` | Crawl directives + sitemap reference |
+
+### SEO services
+
+`/services/seo` covers the full modern program as a card grid: **SEO Audit,
+Technical, On-Page, Off-Page, CRO, Analytics & Reporting, and GEO/AEO**
+(Generative / Answer Engine Optimization for AI search), plus engagement process,
+representative results, and CTAs.
+
+### Blog
+
+Posts are an Astro **content collection** (`src/content/blog/*.md`), typed by the
+schema in `src/content/config.ts`. Add a new `.md` file with the required
+frontmatter (`title`, `description`, `pubDate`, optional `category`,
+`readingTime`, `draft`) and it appears automatically on `/blog`.
+
 ## Project structure
 
 ```
@@ -33,12 +58,34 @@ src/
   layouts/Base.astro        # <head>, fonts, SEO, motion runtime (Lenis + reveals)
   components/               # Nav, Hero, Marquee, Intro, Services, Work,
                             # Stats, Process, Testimonial, Contact, Footer
-  pages/index.astro         # single-page home that composes the sections
-  styles/global.css         # base layer, design tokens, reveal + reduced-motion
+  pages/
+    index.astro             # single-page home
+    services/seo.astro      # SEO services page
+    blog/index.astro        # blog listing
+    blog/[...slug].astro    # blog post template
+  content/
+    config.ts               # blog collection schema
+    blog/*.md               # blog posts
+  styles/global.css         # base layer, design tokens, prose, reduced-motion
 public/
   example.png               # placeholder used for all work/project thumbnails
+  robots.txt
 tailwind.config.mjs         # color, type, and animation tokens
+netlify.toml                # deploy config (Netlify / Cloudflare / Vercel)
 ```
+
+## Deployment
+
+The site is fully static. Any host that serves a folder works.
+
+- **Netlify / Cloudflare Pages / Vercel** — point at the repo; build command
+  `npm run build`, publish directory `dist`. `netlify.toml` is already provided
+  and is read by Netlify and Cloudflare Pages; Vercel auto-detects Astro.
+- **Manual** — `npm run build`, then deploy the `dist/` folder anywhere
+  (S3 + CloudFront, GitHub Pages, nginx, etc.).
+
+Set the production domain in `astro.config.mjs` (`site`) so the sitemap and
+canonical URLs resolve correctly (currently `https://growthlocal.com`).
 
 ## Design tokens
 
@@ -63,5 +110,6 @@ Defined in `tailwind.config.mjs`:
 
 ## Roadmap
 
-- Single-page home today; structured so a multi-page **blog** (and `/work`
-  case-study pages) can be added under `src/pages/` with the shared layout.
+- Individual `/work/<slug>` case-study pages (mirror the blog collection
+  pattern) when real project content and imagery are ready.
+- Wire the contact CTAs to a real form backend or scheduling link.

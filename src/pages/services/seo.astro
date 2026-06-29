@@ -1,0 +1,252 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const services = [
+  {
+    no: '01',
+    title: 'SEO Audit',
+    desc: 'A forensic baseline. We crawl, benchmark, and pressure-test your site against competitors to find exactly what is holding rankings back — and what to fix first.',
+    chips: ['Tech crawl', 'Competitor gap', 'Priority roadmap'],
+    icon: 'audit',
+  },
+  {
+    no: '02',
+    title: 'Technical SEO',
+    desc: 'The foundation everything else stands on. Crawlability, indexation, site speed, Core Web Vitals, structured data, and a clean, logical architecture.',
+    chips: ['Core Web Vitals', 'Schema', 'Indexation'],
+    icon: 'technical',
+  },
+  {
+    no: '03',
+    title: 'On-Page SEO',
+    desc: 'Content and structure engineered to rank and convert. Keyword targeting, intent mapping, metadata, internal linking, and pages built around what searchers actually want.',
+    chips: ['Intent mapping', 'Content', 'Internal links'],
+    icon: 'onpage',
+  },
+  {
+    no: '04',
+    title: 'Off-Page SEO',
+    desc: 'Authority you earn. Digital PR, strategic link acquisition, and brand signals that tell search engines you are the credible answer in your space.',
+    chips: ['Digital PR', 'Link earning', 'Authority'],
+    icon: 'offpage',
+  },
+  {
+    no: '05',
+    title: 'CRO',
+    desc: 'Traffic only matters if it converts. We test, refine, and rebuild the journey from landing to lead — turning the visitors SEO earns into pipeline.',
+    chips: ['A/B testing', 'UX', 'Landing pages'],
+    icon: 'cro',
+  },
+  {
+    no: '06',
+    title: 'Analytics & Reporting',
+    desc: 'Total clarity on what is working. GA4, Search Console, and rank tracking distilled into transparent dashboards tied to revenue — no vanity metrics.',
+    chips: ['GA4', 'Attribution', 'Live dashboards'],
+    icon: 'analytics',
+  },
+  {
+    no: '07',
+    title: 'GEO / AEO',
+    desc: 'Search is moving to AI. Generative & Answer Engine Optimization positions you to be cited by ChatGPT, Perplexity, and Google AI Overviews — the next front of discovery.',
+    chips: ['AI Overviews', 'LLM citations', 'Entity SEO'],
+    icon: 'geo',
+  },
+];
+
+const steps = [
+  { no: '01', title: 'Audit & baseline', body: 'We measure where you stand and agree on the metrics that define winning.' },
+  { no: '02', title: 'Strategy & roadmap', body: 'A prioritized plan across technical, content, and authority — sequenced for fast, compounding wins.' },
+  { no: '03', title: 'Build & optimize', body: 'We ship the work — fixes, content, links, experiments — in tight, measurable cycles.' },
+  { no: '04', title: 'Measure & scale', body: 'Transparent reporting feeds the next sprint, so results keep compounding month over month.' },
+];
+
+const stats = [
+  { value: '128', suffix: '%', label: 'Avg. organic session growth' },
+  { value: '3', suffix: 'x', label: 'More top-3 keyword rankings' },
+  { value: '40', suffix: '%', label: 'Lift in qualified conversions' },
+  { value: '90', suffix: '+', label: 'Avg. Core Web Vitals score' },
+];
+
+// Minimal, consistent 1.5px stroke icons (Lucide/Phosphor style)
+const icons: Record<string, string> = {
+  audit: '<circle cx="6" cy="6" r="3.2"/><path d="M8.4 8.4 13 13"/><path d="M5 6h2M6 5v2"/>',
+  technical: '<path d="M6 3.5 2.5 7 6 10.5M10 3.5 13.5 7 10 10.5"/>',
+  onpage: '<rect x="3" y="2.5" width="9" height="11" rx="1.2"/><path d="M5.2 5.5h4.6M5.2 7.6h4.6M5.2 9.7h2.8"/>',
+  offpage: '<path d="M6.2 8.8a2.4 2.4 0 0 1 0-3.4l1.6-1.6a2.4 2.4 0 0 1 3.4 3.4l-.8.8"/><path d="M8.8 6.2a2.4 2.4 0 0 1 0 3.4l-1.6 1.6a2.4 2.4 0 0 1-3.4-3.4l.8-.8"/>',
+  cro: '<path d="M2.5 12h11"/><path d="M4 12V8.5M7 12V5.5M10 12V7.5M13 12V3.5"/>',
+  analytics: '<path d="M2.5 2.5v11h11"/><path d="m4.5 10 2.5-3 2.5 2 3-4.5"/>',
+  geo: '<path d="M8 2.2 9.2 6l3.8 1.2L9.2 8.4 8 12.2 6.8 8.4 3 7.2 6.8 6 8 2.2Z"/>',
+};
+---
+
+<Base
+  title="SEO Services — Audit, Technical, On/Off-Page, CRO, GEO/AEO · Growth Local"
+  description="Full-funnel SEO from Growth Local: SEO audits, technical, on-page, off-page, CRO, analytics & reporting, and AI search optimization (GEO/AEO). Colorado Springs, serving brands nationwide."
+>
+  <Nav />
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative overflow-hidden pb-[clamp(3rem,7vw,6rem)] pt-36 md:pt-44">
+      <div
+        class="pointer-events-none absolute -right-[8%] top-0 -z-0 h-[50vw] w-[50vw] rounded-full opacity-[0.15] blur-[120px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        data-parallax="0.16"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10">
+        <p class="eyebrow reveal mb-8 flex items-center gap-3">
+          <a href="/#services" class="transition-colors hover:text-lime">Services</a>
+          <span class="text-ink-faint">/</span>
+          <span class="text-lime">SEO</span>
+        </p>
+        <h1 class="display text-[clamp(2.6rem,9vw,9.5rem)]">
+          <span class="line-mask"><span>Search growth,</span></span>
+          <span class="line-mask"><span><span class="text-lime">engineered.</span></span></span>
+        </h1>
+        <div class="mt-10 grid items-end gap-8 md:grid-cols-12">
+          <p class="reveal col-span-12 max-w-xl text-lg leading-relaxed text-ink-muted md:col-span-7 md:text-xl" style="--reveal-delay:120ms">
+            A complete, modern SEO program — from the technical foundation to
+            AI-era discovery. We don't chase rankings for their own sake; we build
+            search into a durable channel that drives revenue.
+          </p>
+          <div class="reveal col-span-12 flex flex-wrap gap-4 md:col-span-5 md:justify-end" style="--reveal-delay:220ms">
+            <a href="/#contact" class="btn btn-primary">
+              Get an SEO audit
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/#work" class="btn btn-ghost">See results</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services grid -->
+    <section class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+      <div class="container-wide">
+        <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+          <h2 class="display text-[clamp(2rem,6vw,5rem)]">
+            <span class="line-mask"><span>Seven disciplines,</span></span>
+            <span class="line-mask"><span>one compounding system.</span></span>
+          </h2>
+          <p class="eyebrow reveal mb-3">What's included</p>
+        </div>
+
+        <div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {
+            services.map((s, i) => (
+              <article
+                class="reveal group relative flex flex-col bg-base-900 p-7 transition-colors duration-500 hover:bg-base-800 md:p-9"
+                style={`--reveal-delay:${(i % 3) * 80}ms`}
+              >
+                <div class="flex items-center justify-between">
+                  <span class="flex h-11 w-11 items-center justify-center rounded-lg border border-line text-lime transition-colors duration-500 group-hover:border-lime/50">
+                    <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[s.icon]} />
+                  </span>
+                  <span class="font-mono text-sm text-ink-faint">{s.no}</span>
+                </div>
+                <h3 class="display mt-7 text-3xl text-ink md:text-[2.1rem]">{s.title}</h3>
+                <p class="mt-4 flex-1 text-pretty leading-relaxed text-ink-muted">{s.desc}</p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {s.chips.map((c) => (
+                    <span class="rounded-full border border-line px-3 py-1 font-mono text-[0.66rem] uppercase tracking-wide text-ink-muted transition-colors duration-300 group-hover:text-ink">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))
+          }
+          <!-- CTA card fills the 8th cell so the grid reads intentionally -->
+          <a
+            href="/#contact"
+            class="reveal group flex flex-col justify-between bg-lime p-7 text-base-900 transition-colors duration-500 hover:bg-lime-400 md:p-9 lg:col-span-2"
+          >
+            <span class="font-mono text-sm">→</span>
+            <div>
+              <h3 class="display mt-7 text-3xl md:text-[2.1rem]">Not sure where to start?</h3>
+              <p class="mt-4 max-w-[40ch] font-medium leading-relaxed text-base-900/80">
+                Begin with a free SEO audit. We'll show you the gaps and the
+                fastest path to growth.
+              </p>
+              <span class="mt-6 inline-flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em]">
+                Get an audit
+                <svg class="transition-transform duration-300 group-hover:translate-x-1" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+      <div class="container-wide">
+        <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+          <h2 class="display text-[clamp(2rem,6vw,5rem)]">
+            <span class="line-mask"><span>How an engagement runs</span></span>
+          </h2>
+          <p class="eyebrow reveal mb-3">A rhythm, not a one-off</p>
+        </div>
+        <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {
+            steps.map((s, i) => (
+              <div class="reveal group bg-base-900 p-7 transition-colors duration-500 hover:bg-base-800 md:p-9" style={`--reveal-delay:${i * 90}ms`}>
+                <span class="font-mono text-sm text-lime">{s.no}</span>
+                <h3 class="display mt-6 text-3xl text-ink">{s.title}</h3>
+                <p class="mt-4 text-pretty leading-relaxed text-ink-muted">{s.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="border-t border-line bg-base-800/40 py-[clamp(3.5rem,7vw,6.5rem)]">
+      <div class="container-wide">
+        <p class="eyebrow reveal mb-12">Representative results</p>
+        <div class="grid gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            stats.map((s, i) => (
+              <div class="reveal border-l border-line pl-6" style={`--reveal-delay:${i * 80}ms`}>
+                <p class="display flex items-baseline text-[clamp(2.6rem,7vw,5rem)] leading-none text-ink">
+                  <span data-count={s.value}>{s.value}</span>
+                  <span class="text-lime">{s.suffix}</span>
+                </p>
+                <p class="mt-4 max-w-[12rem] text-sm leading-snug text-ink-muted">{s.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden border-t border-line py-[clamp(4rem,11vw,9rem)]">
+      <div
+        class="pointer-events-none absolute -bottom-[20%] left-1/2 -z-0 h-[55vw] w-[55vw] -translate-x-1/2 rounded-full opacity-[0.13] blur-[130px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10 text-center">
+        <h2 class="display mx-auto max-w-4xl text-[clamp(2.2rem,7vw,6rem)]">
+          <span class="line-mask"><span>Own the results</span></span>
+          <span class="line-mask"><span>that <span class="text-lime">matter.</span></span></span>
+        </h2>
+        <p class="reveal mx-auto mt-8 max-w-xl text-lg leading-relaxed text-ink-muted">
+          Start with a free audit. We'll show you the gaps, the opportunity, and
+          the fastest credible path to the top of search — classic and AI alike.
+        </p>
+        <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--reveal-delay:120ms">
+          <a href="/#contact" class="btn btn-primary">Get an SEO audit</a>
+          <a href="/#services" class="btn btn-ghost">All services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

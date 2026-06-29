@@ -1,5 +1,13 @@
 ---
-const services = [
+interface Service {
+  no: string;
+  title: string;
+  blurb: string;
+  tags: string[];
+  href?: string;
+}
+
+const services: Service[] = [
   {
     no: '01',
     title: 'Web Development',
@@ -17,9 +25,10 @@ const services = [
   {
     no: '03',
     title: 'SEO',
+    href: '/services/seo',
     blurb:
-      'Visibility that compounds. Technical SEO, content strategy, and local search that put you in front of the people already looking for you.',
-    tags: ['Technical SEO', 'Content', 'Local Search', 'Authority'],
+      'Visibility that compounds. A full-funnel program — audits, technical, on-page, off-page, CRO, reporting, and AI search (GEO/AEO) — that puts you in front of the people already looking.',
+    tags: ['Audit', 'Technical', 'On-Page', 'Off-Page', 'CRO', 'Reporting', 'GEO/AEO'],
   },
   {
     no: '04',
@@ -44,36 +53,50 @@ const services = [
 
     <ul class="border-t border-line">
       {
-        services.map((s) => (
-          <li class="group relative border-b border-line">
-            <div class="reveal grid cursor-default grid-cols-12 items-center gap-4 py-7 transition-colors duration-500 md:py-9">
-              <span class="col-span-2 font-mono text-sm text-ink-faint transition-colors duration-300 group-hover:text-lime md:col-span-1">
-                {s.no}
-              </span>
-              <h3 class="display col-span-10 text-[clamp(1.9rem,5.2vw,4rem)] leading-none text-ink transition-transform duration-500 group-hover:translate-x-2 group-hover:text-lime md:col-span-6">
-                {s.title}
-              </h3>
-              <div class="col-span-12 md:col-span-5">
-                <div class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-48 group-hover:opacity-100 md:max-h-0">
-                  <p class="text-pretty pt-1 leading-relaxed text-ink-muted">
+        services.map((s) => {
+          const Tag = s.href ? 'a' : 'div';
+          return (
+            <li class="group relative border-b border-line">
+              <Tag
+                {...(s.href ? { href: s.href } : {})}
+                class="reveal grid grid-cols-12 items-center gap-4 py-7 transition-colors duration-500 md:py-9"
+              >
+                <span class="col-span-2 font-mono text-sm text-ink-faint transition-colors duration-300 group-hover:text-lime md:col-span-1">
+                  {s.no}
+                </span>
+                <h3 class="display col-span-10 flex items-center gap-3 text-[clamp(1.9rem,5.2vw,4rem)] leading-none text-ink transition-transform duration-500 group-hover:translate-x-2 group-hover:text-lime md:col-span-6">
+                  {s.title}
+                  {s.href && (
+                    <svg class="h-5 w-5 shrink-0 -translate-x-2 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  )}
+                </h3>
+                <div class="col-span-12 md:col-span-5">
+                  <div class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-56 group-hover:opacity-100 md:max-h-0">
+                    <p class="text-pretty pt-1 leading-relaxed text-ink-muted">
+                      {s.blurb}
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      {s.tags.map((t) => (
+                        <span class="rounded-full border border-line px-3 py-1 font-mono text-[0.68rem] uppercase tracking-wide text-ink-muted">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {s.href && (
+                      <span class="mt-5 inline-flex font-mono text-[0.72rem] uppercase tracking-[0.14em] text-lime">
+                        Explore SEO services →
+                      </span>
+                    )}
+                  </div>
+                  {/* Always-visible blurb on mobile/touch where hover is unreliable */}
+                  <p class="text-pretty pt-1 leading-relaxed text-ink-muted md:hidden">
                     {s.blurb}
                   </p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    {s.tags.map((t) => (
-                      <span class="rounded-full border border-line px-3 py-1 font-mono text-[0.68rem] uppercase tracking-wide text-ink-muted">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-                {/* Always-visible blurb on mobile/touch where hover is unreliable */}
-                <p class="text-pretty pt-1 leading-relaxed text-ink-muted md:hidden">
-                  {s.blurb}
-                </p>
-              </div>
-            </div>
-          </li>
-        ))
+              </Tag>
+            </li>
+          );
+        })
       }
     </ul>
   </div>

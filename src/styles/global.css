@@ -158,6 +158,95 @@
     transform: translateY(-2px);
   }
 
+  /* Long-form article content */
+  .prose-gl {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: theme('colors.ink.muted');
+  }
+  .prose-gl > * + * {
+    margin-top: 1.4em;
+  }
+  .prose-gl h2 {
+    font-family: theme('fontFamily.display');
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: theme('colors.ink.DEFAULT');
+    margin-top: 2.4em;
+  }
+  .prose-gl h3 {
+    font-family: theme('fontFamily.display');
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: theme('colors.ink.DEFAULT');
+    margin-top: 1.8em;
+  }
+  .prose-gl p,
+  .prose-gl li {
+    text-wrap: pretty;
+  }
+  .prose-gl strong {
+    color: theme('colors.ink.DEFAULT');
+    font-weight: 600;
+  }
+  .prose-gl a {
+    color: theme('colors.lime.DEFAULT');
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .prose-gl ul,
+  .prose-gl ol {
+    padding-left: 1.3em;
+  }
+  .prose-gl ul {
+    list-style: none;
+  }
+  .prose-gl ul li {
+    position: relative;
+  }
+  .prose-gl ul li::before {
+    content: '';
+    position: absolute;
+    left: -1.1em;
+    top: 0.72em;
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 999px;
+    background: theme('colors.lime.DEFAULT');
+  }
+  .prose-gl ol {
+    list-style: decimal;
+  }
+  .prose-gl ol li::marker {
+    color: theme('colors.lime.DEFAULT');
+    font-family: theme('fontFamily.mono');
+    font-size: 0.85em;
+  }
+  .prose-gl li + li {
+    margin-top: 0.6em;
+  }
+  .prose-gl blockquote {
+    border-left: 2px solid theme('colors.lime.DEFAULT');
+    padding-left: 1.4rem;
+    margin-left: 0;
+    font-family: theme('fontFamily.display');
+    font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: theme('colors.ink.DEFAULT');
+  }
+  .prose-gl code {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.88em;
+    background: theme('colors.base.700');
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: theme('colors.ink.DEFAULT');
+  }
+
   .grain {
     position: fixed;
     inset: 0;
