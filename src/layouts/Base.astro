@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CursorFX from '../components/CursorFX.astro';
 
 interface Props {
   title?: string;
@@ -45,6 +46,7 @@ const {
       >Skip to content</a
     >
     <div class="grain" aria-hidden="true"></div>
+    <CursorFX />
     <slot />
 
     <script>

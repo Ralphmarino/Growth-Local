@@ -1,0 +1,173 @@
+---
+// Electric cursor effects: a trailing lime line that follows the pointer
+// (mosaic.com style) and an expanding ring + spark burst on click
+// (digitalsnowstorm.com style). Renders on a single full-screen canvas.
+// Disabled on touch / coarse pointers and when prefers-reduced-motion is set.
+---
+
+<canvas
+  id="cursor-fx"
+  class="pointer-events-none fixed inset-0 z-[60] hidden"
+  style="mix-blend-mode: screen;"
+  aria-hidden="true"
+></canvas>
+
+<script>
+  const canvas = document.getElementById('cursor-fx') as HTMLCanvasElement | null;
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canvas && fine && !reduced) {
+    const ctx = canvas.getContext('2d')!;
+    canvas.classList.remove('hidden');
+
+    const LIME = '199, 249, 78';
+    let w = 0;
+    let h = 0;
+    let dpr = 1;
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    // --- Trailing line state ---
+    const mouse = { x: w / 2, y: h / 2 };
+    const head = { x: w / 2, y: h / 2 };
+    const pts: { x: number; y: number }[] = [];
+    const MAX = 26;
+    let started = false;
+    let lastMove = 0;
+
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        if (e.pointerType === 'touch') return;
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        lastMove = performance.now();
+        if (!started) {
+          head.x = mouse.x;
+          head.y = mouse.y;
+          started = true;
+        }
+      },
+      { passive: true }
+    );
+
+    // --- Click burst state ---
+    type Ring = { x: number; y: number; r: number; a: number };
+    type Spark = { x: number; y: number; vx: number; vy: number; a: number };
+    const rings: Ring[] = [];
+    const sparks: Spark[] = [];
+
+    window.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch') return;
+      rings.push({ x: e.clientX, y: e.clientY, r: 4, a: 1 });
+      const count = 12;
+      for (let i = 0; i < count; i++) {
+        const ang = (Math.PI * 2 * i) / count + Math.random() * 0.4;
+        const speed = 2.5 + Math.random() * 3.5;
+        sparks.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: Math.cos(ang) * speed,
+          vy: Math.sin(ang) * speed,
+          a: 1,
+        });
+      }
+    });
+
+    const frame = () => {
+      ctx.clearRect(0, 0, w, h);
+
+      // Ease the head toward the pointer for a smooth, slightly-lagging trail
+      head.x += (mouse.x - head.x) * 0.32;
+      head.y += (mouse.y - head.y) * 0.32;
+
+      if (started) {
+        pts.push({ x: head.x, y: head.y });
+        // When the pointer is idle, let the tail catch up and shorten
+        const idle = performance.now() - lastMove > 90;
+        const cap = idle ? Math.max(2, pts.length - 2) : MAX;
+        while (pts.length > cap) pts.shift();
+
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.shadowColor = `rgba(${LIME}, 0.9)`;
+        for (let i = 1; i < pts.length; i++) {
+          const t = i / pts.length;
+          ctx.strokeStyle = `rgba(${LIME}, ${t * 0.85})`;
+          ctx.lineWidth = t * 2.6;
+          ctx.shadowBlur = t * 11;
+          ctx.beginPath();
+          ctx.moveTo(pts[i - 1].x, pts[i - 1].y);
+          ctx.lineTo(pts[i].x, pts[i].y);
+          ctx.stroke();
+        }
+
+        // Head glow dot
+        if (pts.length) {
+          const p = pts[pts.length - 1];
+          ctx.shadowBlur = 16;
+          ctx.fillStyle = `rgba(${LIME}, 0.95)`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Click rings
+      for (let i = rings.length - 1; i >= 0; i--) {
+        const r = rings[i];
+        r.r += 5.5;
+        r.a -= 0.035;
+        if (r.a <= 0) {
+          rings.splice(i, 1);
+          continue;
+        }
+        ctx.shadowColor = `rgba(${LIME}, 0.8)`;
+        ctx.shadowBlur = 10;
+        ctx.strokeStyle = `rgba(${LIME}, ${r.a})`;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Click sparks
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vx *= 0.92;
+        s.vy *= 0.92;
+        s.a -= 0.025;
+        if (s.a <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+        ctx.shadowColor = `rgba(${LIME}, 0.8)`;
+        ctx.shadowBlur = 8;
+        ctx.strokeStyle = `rgba(${LIME}, ${s.a})`;
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(s.x - s.vx * 1.8, s.y - s.vy * 1.8);
+        ctx.stroke();
+      }
+
+      ctx.shadowBlur = 0;
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
