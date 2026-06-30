@@ -27,11 +27,13 @@
       <label class="field">
         <span class="field-label">Your website</span>
         <input
-          type="url"
+          type="text"
           name="website"
           required
           inputmode="url"
-          placeholder="yourwebsite.com"
+          placeholder="growthlocal.com"
+          pattern="(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?"
+          title="Enter your site, e.g. growthlocal.com"
           class="field-input"
           autocomplete="url"
           data-lpignore="true"
@@ -210,6 +212,11 @@
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
+      // Normalize a bare domain (growthlocal.com) into a full URL before sending
+      const site = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (site && site.value && !/^https?:\/\//i.test(site.value)) {
+        site.value = 'https://' + site.value.trim();
+      }
       const data = new FormData(form);
       btn?.classList.add('is-loading');
       if (btn) btn.textContent = 'Sending…';
