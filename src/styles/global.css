@@ -3,9 +3,59 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  [data-theme='dark'] {
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     color-scheme: dark;
+    --bg: 10 10 11;
+    --bg-800: 15 15 17;
+    --bg-700: 22 22 24;
+    --bg-600: 30 30 33;
+    --ink: 244 244 239;
+    --ink-muted: 155 155 147;
+    --ink-faint: 106 106 98;
+    --lime: 199 249 78;
+    --lime-400: 212 251 110;
+    --lime-600: 169 224 32;
+    --accent: 199 249 78;
+    --line: rgba(244, 244, 239, 0.1);
+    --warm: 0;
+  }
+
+  /* Light — warm off-white, deep leaf-green text accent for contrast */
+  [data-theme='light'] {
+    color-scheme: light;
+    --bg: 247 246 241;
+    --bg-800: 240 238 232;
+    --bg-700: 232 230 223;
+    --bg-600: 224 222 214;
+    --ink: 20 20 22;
+    --ink-muted: 92 92 86;
+    --ink-faint: 138 138 130;
+    --lime: 182 230 42;
+    --lime-400: 199 249 78;
+    --lime-600: 140 185 20;
+    --accent: 86 132 18;
+    --line: rgba(12, 12, 14, 0.12);
+    --warm: 0;
+  }
+
+  /* Evening — warm near-black; a soft-light warm wash is layered on top */
+  [data-theme='evening'] {
+    color-scheme: dark;
+    --bg: 18 16 14;
+    --bg-800: 24 21 18;
+    --bg-700: 31 27 23;
+    --bg-600: 40 35 30;
+    --ink: 243 236 225;
+    --ink-muted: 170 158 142;
+    --ink-faint: 118 108 96;
+    --lime: 205 240 96;
+    --lime-400: 216 246 120;
+    --lime-600: 175 210 60;
+    --accent: 205 240 96;
+    --line: rgba(243, 236, 225, 0.1);
+    --warm: 1;
   }
 
   *,
@@ -35,17 +85,20 @@
 
   body {
     margin: 0;
-    background-color: theme('colors.base.DEFAULT');
-    color: theme('colors.ink.DEFAULT');
+    background-color: rgb(var(--bg));
+    color: rgb(var(--ink));
     font-family: theme('fontFamily.sans');
     font-size: 16px;
     line-height: 1.6;
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
   }
 
   ::selection {
-    background: theme('colors.lime.DEFAULT');
+    background: rgb(var(--lime));
     color: #0a0a0b;
   }
 
@@ -60,7 +113,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid theme('colors.lime.DEFAULT');
+    outline: 2px solid rgb(var(--accent));
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -87,11 +140,11 @@
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: theme('colors.ink.muted');
+    color: rgb(var(--ink-muted));
   }
 
   .hairline {
-    border-color: theme('colors.line');
+    border-color: var(--line);
   }
 
   /* Reveal-on-scroll primitive (driven by IntersectionObserver) */
@@ -141,20 +194,20 @@
       border-color 0.25s ease;
   }
   .btn-primary {
-    background: theme('colors.lime.DEFAULT');
+    background: rgb(var(--lime));
     color: #0a0a0b;
   }
   .btn-primary:hover {
-    background: theme('colors.lime.400');
+    background: rgb(var(--lime-400));
     transform: translateY(-2px);
   }
   .btn-ghost {
-    border: 1px solid theme('colors.line');
-    color: theme('colors.ink.DEFAULT');
+    border: 1px solid var(--line);
+    color: rgb(var(--ink));
   }
   .btn-ghost:hover {
-    border-color: theme('colors.lime.DEFAULT');
-    color: theme('colors.lime.DEFAULT');
+    border-color: rgb(var(--accent));
+    color: rgb(var(--accent));
     transform: translateY(-2px);
   }
 
@@ -162,7 +215,7 @@
   .prose-gl {
     font-size: 1.0625rem;
     line-height: 1.75;
-    color: theme('colors.ink.muted');
+    color: rgb(var(--ink-muted));
   }
   .prose-gl > * + * {
     margin-top: 1.4em;
@@ -173,14 +226,14 @@
     letter-spacing: -0.03em;
     line-height: 1.1;
     font-size: clamp(1.5rem, 3vw, 2.1rem);
-    color: theme('colors.ink.DEFAULT');
+    color: rgb(var(--ink));
     margin-top: 2.4em;
   }
   .prose-gl h3 {
     font-family: theme('fontFamily.display');
     font-weight: 600;
     font-size: 1.3rem;
-    color: theme('colors.ink.DEFAULT');
+    color: rgb(var(--ink));
     margin-top: 1.8em;
   }
   .prose-gl p,
@@ -188,11 +241,11 @@
     text-wrap: pretty;
   }
   .prose-gl strong {
-    color: theme('colors.ink.DEFAULT');
+    color: rgb(var(--ink));
     font-weight: 600;
   }
   .prose-gl a {
-    color: theme('colors.lime.DEFAULT');
+    color: rgb(var(--accent));
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
@@ -215,13 +268,13 @@
     width: 0.4em;
     height: 0.4em;
     border-radius: 999px;
-    background: theme('colors.lime.DEFAULT');
+    background: rgb(var(--accent));
   }
   .prose-gl ol {
     list-style: decimal;
   }
   .prose-gl ol li::marker {
-    color: theme('colors.lime.DEFAULT');
+    color: rgb(var(--accent));
     font-family: theme('fontFamily.mono');
     font-size: 0.85em;
   }
@@ -229,22 +282,36 @@
     margin-top: 0.6em;
   }
   .prose-gl blockquote {
-    border-left: 2px solid theme('colors.lime.DEFAULT');
+    border-left: 2px solid rgb(var(--accent));
     padding-left: 1.4rem;
     margin-left: 0;
     font-family: theme('fontFamily.display');
     font-size: clamp(1.3rem, 2.6vw, 1.8rem);
     line-height: 1.3;
     letter-spacing: -0.02em;
-    color: theme('colors.ink.DEFAULT');
+    color: rgb(var(--ink));
   }
   .prose-gl code {
     font-family: theme('fontFamily.mono');
     font-size: 0.88em;
-    background: theme('colors.base.700');
+    background: rgb(var(--bg-700));
     padding: 0.15em 0.4em;
     border-radius: 4px;
-    color: theme('colors.ink.DEFAULT');
+    color: rgb(var(--ink));
+  }
+
+  /* Evening warmth wash — opacity driven by the theme's --warm var */
+  .warm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: var(--warm, 0);
+    transition: opacity 0.5s ease;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(255, 176, 92, 0.18), transparent 60%),
+      linear-gradient(rgba(255, 150, 70, 0.07), rgba(255, 120, 40, 0.06));
+    mix-blend-mode: soft-light;
   }
 
   .grain {

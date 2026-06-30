@@ -8,16 +8,16 @@ import { ralph } from '../data/author';
     <AuthorAvatar size={84} />
   </a>
   <div class="flex-1">
-    <p class="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-lime">Written by</p>
-    <a href={`/blog/author/${ralph.slug}`} class="font-display text-2xl font-semibold tracking-tightest transition-colors hover:text-lime">
+    <p class="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">Written by</p>
+    <a href={`/blog/author/${ralph.slug}`} class="font-display text-2xl font-semibold tracking-tightest transition-colors hover:text-accent">
       {ralph.name}
     </a>
     <p class="mt-2 max-w-xl text-pretty text-sm leading-relaxed text-ink-muted">
       {ralph.bioShort}
     </p>
     <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[0.72rem] uppercase tracking-wider">
-      <a href={`/blog/author/${ralph.slug}`} class="text-ink-muted transition-colors hover:text-lime">Full bio →</a>
-      <a href={ralph.linkedin} target="_blank" rel="noopener" class="text-ink-muted transition-colors hover:text-lime">LinkedIn →</a>
+      <a href={`/blog/author/${ralph.slug}`} class="text-ink-muted transition-colors hover:text-accent">Full bio →</a>
+      <a href={ralph.linkedin} target="_blank" rel="noopener" class="text-ink-muted transition-colors hover:text-accent">LinkedIn →</a>
     </div>
   </div>
 </aside>

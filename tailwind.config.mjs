@@ -4,25 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Near-black canvas + warm off-white ink + electric lime accent
+        // Driven by CSS variables in global.css so Dark / Light / Evening
+        // themes can swap the whole palette at runtime.
         ink: {
-          DEFAULT: '#F4F4EF',
-          muted: '#9B9B93',
-          faint: '#6A6A62',
+          DEFAULT: 'rgb(var(--ink) / <alpha-value>)',
+          muted: 'rgb(var(--ink-muted) / <alpha-value>)',
+          faint: 'rgb(var(--ink-faint) / <alpha-value>)',
         },
         base: {
-          DEFAULT: '#0A0A0B',
-          900: '#0A0A0B',
-          800: '#0F0F11',
-          700: '#161618',
-          600: '#1E1E21',
+          DEFAULT: 'rgb(var(--bg) / <alpha-value>)',
+          900: 'rgb(var(--bg) / <alpha-value>)',
+          800: 'rgb(var(--bg-800) / <alpha-value>)',
+          700: 'rgb(var(--bg-700) / <alpha-value>)',
+          600: 'rgb(var(--bg-600) / <alpha-value>)',
         },
+        // Brand lime (button fills, selection) — stays vivid across themes
         lime: {
-          DEFAULT: '#C7F94E',
-          400: '#D4FB6E',
-          600: '#A9E020',
+          DEFAULT: 'rgb(var(--lime) / <alpha-value>)',
+          400: 'rgb(var(--lime-400) / <alpha-value>)',
+          600: 'rgb(var(--lime-600) / <alpha-value>)',
         },
-        line: 'rgba(244,244,239,0.10)',
+        // Text/mark accent — deepens to a readable leaf-green in light mode
+        accent: {
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+        },
+        line: 'var(--line)',
       },
       fontFamily: {
         display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],

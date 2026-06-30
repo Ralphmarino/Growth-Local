@@ -47,7 +47,7 @@ const services: Service[] = [
         <span class="line-mask"><span>What we do</span></span>
       </h2>
       <p class="eyebrow reveal mb-3">
-        <span class="text-lime">[02]</span> &nbsp;Capabilities / Four disciplines, one team
+        <span class="text-accent">[02]</span> &nbsp;Capabilities / Four disciplines, one team
       </p>
     </div>
 
@@ -61,10 +61,10 @@ const services: Service[] = [
                 {...(s.href ? { href: s.href } : {})}
                 class="reveal grid grid-cols-12 items-center gap-4 py-7 transition-colors duration-500 md:py-9"
               >
-                <span class="col-span-2 font-mono text-sm text-ink-faint transition-colors duration-300 group-hover:text-lime md:col-span-1">
+                <span class="col-span-2 font-mono text-sm text-ink-faint transition-colors duration-300 group-hover:text-accent md:col-span-1">
                   {s.no}
                 </span>
-                <h3 class="display col-span-10 flex items-center gap-3 text-[clamp(1.9rem,5.2vw,4rem)] leading-none text-ink transition-transform duration-500 group-hover:translate-x-2 group-hover:text-lime md:col-span-6">
+                <h3 class="display col-span-10 flex items-center gap-3 text-[clamp(1.9rem,5.2vw,4rem)] leading-none text-ink transition-transform duration-500 group-hover:translate-x-2 group-hover:text-accent md:col-span-6">
                   {s.title}
                   {s.href && (
                     <svg class="h-5 w-5 shrink-0 -translate-x-2 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -83,7 +83,7 @@ const services: Service[] = [
                       ))}
                     </div>
                     {s.href && (
-                      <span class="mt-5 inline-flex font-mono text-[0.72rem] uppercase tracking-[0.14em] text-lime">
+                      <span class="mt-5 inline-flex font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent">
                         Explore SEO services →
                       </span>
                     )}

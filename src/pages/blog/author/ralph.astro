@@ -29,7 +29,7 @@ const fmt = (d: Date) =>
       >
       </div>
       <div class="container-wide relative z-10">
-        <a href="/blog" class="eyebrow reveal mb-10 inline-flex items-center gap-2 transition-colors hover:text-lime">
+        <a href="/blog" class="eyebrow reveal mb-10 inline-flex items-center gap-2 transition-colors hover:text-accent">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           The Journal
         </a>
@@ -46,7 +46,7 @@ const fmt = (d: Date) =>
 
           <div class="md:col-span-9">
             <p class="eyebrow reveal mb-5">
-              <span class="text-lime">Founder & operator</span> · Growth Local
+              <span class="text-accent">Founder & operator</span> · Growth Local
             </p>
             <h1 class="display text-[clamp(2.6rem,8vw,7rem)]">
               <span class="line-mask"><span>{ralph.name}</span></span>
@@ -86,7 +86,7 @@ const fmt = (d: Date) =>
           <dl class="reveal mt-10 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
             <div class="bg-base-900 p-6">
               <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Experience</dt>
-              <dd class="display mt-2 text-3xl text-lime">8+ yrs</dd>
+              <dd class="display mt-2 text-3xl text-accent">8+ yrs</dd>
             </div>
             <div class="bg-base-900 p-6">
               <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Focus</dt>
@@ -120,10 +120,10 @@ const fmt = (d: Date) =>
                   style={`--reveal-delay:${(i % 4) * 60}ms`}
                 >
                   <div class="col-span-12 flex items-center gap-4 md:col-span-3">
-                    <span class="font-mono text-[0.72rem] uppercase tracking-wider text-lime">{post.data.category}</span>
+                    <span class="font-mono text-[0.72rem] uppercase tracking-wider text-accent">{post.data.category}</span>
                     <span class="font-mono text-[0.72rem] text-ink-faint">{fmt(post.data.pubDate)}</span>
                   </div>
-                  <h3 class="col-span-12 font-display text-[clamp(1.3rem,2.6vw,2rem)] font-semibold leading-tight tracking-tightest transition-colors duration-300 group-hover:text-lime md:col-span-9">
+                  <h3 class="col-span-12 font-display text-[clamp(1.3rem,2.6vw,2rem)] font-semibold leading-tight tracking-tightest transition-colors duration-300 group-hover:text-accent md:col-span-9">
                     {post.data.title}
                   </h3>
                 </a>
