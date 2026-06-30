@@ -1,23 +1,33 @@
 ---
-// Real clients. Each tile is a branded poster for now; drop a screenshot or
-// logo at /public/work/<slug>.png later and switch the tile to an <img> —
-// the slug is also reserved for internal /work/<slug> case-study pages.
+// Real clients. `logo` shows at rest on a per-brand tile (`tile`: light|dark
+// for contrast, or `cover` for full-bleed banners/screenshots). `shot` (the
+// homepage screenshot) crossfades in on hover when available.
 const clients = [
   {
-    name: 'Analog Alien & Cloud 9 Recording',
-    slug: 'analog-alien-cloud-9',
-    summary: 'Full partnership — SEO, GEO, web & social.',
+    name: 'Analog Alien',
+    slug: 'analog-alien',
+    summary: 'SEO, GEO, web & social for the guitar-pedal brand.',
     tags: ['SEO', 'GEO', 'Web', 'Social'],
-    links: [
-      { label: 'analogalien.com', href: 'https://analogalien.com/' },
-      { label: 'cloud9recording.com', href: 'https://cloud9recording.com/' },
-    ],
+    logo: '/work/analog-alien-logo.png',
+    tile: 'dark',
+    links: [{ label: 'analogalien.com', href: 'https://analogalien.com/' }],
+  },
+  {
+    name: 'Cloud 9 Recording',
+    slug: 'cloud-9',
+    summary: 'Search, web & social for the recording studio.',
+    tags: ['SEO', 'GEO', 'Web', 'Social'],
+    logo: '/work/cloud-9-logo.png',
+    tile: 'dark',
+    links: [{ label: 'cloud9recording.com', href: 'https://cloud9recording.com/' }],
   },
   {
     name: 'Yes Energy',
     slug: 'yes-energy',
     summary: 'SEO, site-migration assistance, retention & mitigation.',
     tags: ['SEO', 'Migration', 'Retention'],
+    logo: '/work/yes-energy-logo.png',
+    tile: 'light',
     links: [{ label: 'yesenergy.com', href: 'https://www.yesenergy.com/' }],
   },
   {
@@ -25,27 +35,36 @@ const clients = [
     slug: 'bail-agent-network',
     summary: 'SEO, GEO, and ongoing website & directory maintenance.',
     tags: ['SEO', 'GEO', 'Maintenance'],
+    logo: '/work/bail-agent-network-logo.png',
+    tile: 'light',
     links: [{ label: 'bailagentnetwork.com', href: 'https://www.bailagentnetwork.com/' }],
-  },
-  {
-    name: 'Elixinol',
-    slug: 'elixinol',
-    summary: 'SEO & GEO for a global wellness brand.',
-    tags: ['SEO', 'GEO'],
-    links: [{ label: 'elixinol.com', href: 'https://elixinol.com/' }],
   },
   {
     name: 'Kavasutra Kava Bars',
     slug: 'kavasutra',
     summary: 'SEO & GEO strategy and consulting.',
     tags: ['SEO', 'GEO', 'Consulting'],
+    logo: '/work/kavasutra-logo.jpg',
+    tile: 'cover',
     links: [{ label: 'kavasutra.com', href: 'https://www.kavasutra.com/' }],
+  },
+  {
+    name: 'Elixinol',
+    slug: 'elixinol',
+    summary: 'SEO & GEO for a global wellness brand.',
+    tags: ['SEO', 'GEO'],
+    shot: '/work/elixinol-screenshot.png',
+    tile: 'cover',
+    links: [{ label: 'elixinol.com', href: 'https://elixinol.com/' }],
   },
   {
     name: 'Love, Georgie',
     slug: 'love-georgie',
     summary: 'SEO & GEO optimization.',
     tags: ['SEO', 'GEO'],
+    logo: '/work/love-georgie-logo.png',
+    tile: 'light',
+    shot: '/work/love-georgie-screenshot.png',
     links: [{ label: 'lovegeorgie.com', href: 'https://lovegeorgie.com/' }],
   },
 ];
@@ -64,45 +83,78 @@ const clients = [
 
     <div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {
-        clients.map((c, i) => (
-          <article class="reveal group" style={`--reveal-delay:${(i % 3) * 80}ms`}>
-            <a href={c.links[0].href} target="_blank" rel="noopener" class="block" aria-label={c.name}>
-              <div class="relative aspect-[4/3] overflow-hidden rounded-xl border border-line bg-base-800/50 transition-colors duration-500 group-hover:bg-base-700/60">
-                <div class="work-grid absolute inset-0" aria-hidden="true" />
-                <div class="work-glow absolute -right-12 -top-12 h-44 w-44 rounded-full opacity-40 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-                <span class="absolute right-4 top-4 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <h3 class="absolute inset-x-5 bottom-5 font-display text-[clamp(1.25rem,2.1vw,1.85rem)] font-bold leading-[1.04] tracking-tightest text-ink transition-colors duration-300 group-hover:text-accent">
-                  {c.name}
-                  <span class="text-accent">.</span>
-                </h3>
-              </div>
-            </a>
-            <div class="mt-4">
-              <p class="text-sm leading-relaxed text-ink-muted">{c.summary}</p>
-              <div class="mt-3 flex flex-wrap gap-2">
-                {c.tags.map((t) => (
-                  <span class="rounded-full border border-line px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wide text-ink-muted">
-                    {t}
+        clients.map((c, i) => {
+          const tileBg =
+            c.tile === 'light' ? 'bg-white' : c.tile === 'cover' ? 'bg-base-900' : 'bg-base-900';
+          return (
+            <article class="reveal group" style={`--reveal-delay:${(i % 3) * 80}ms`}>
+              <a href={c.links[0].href} target="_blank" rel="noopener" class="block" aria-label={c.name}>
+                <div class:list={['relative aspect-[4/3] overflow-hidden rounded-xl border border-line', tileBg]}>
+                  {/* Resting visual: logo (contained) or banner/screenshot (cover) */}
+                  {c.tile === 'cover' ? (
+                    <img
+                      src={c.logo ?? c.shot}
+                      alt={c.name}
+                      loading="lazy"
+                      class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <>
+                      {c.tile === 'dark' && (
+                        <div class="work-grid absolute inset-0 opacity-60" aria-hidden="true" />
+                      )}
+                      <img
+                        src={c.logo}
+                        alt={c.name}
+                        loading="lazy"
+                        class="absolute inset-0 m-auto max-h-[44%] max-w-[72%] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </>
+                  )}
+
+                  {/* Hover: reveal the homepage screenshot if we have one */}
+                  {c.shot && (
+                    <img
+                      src={c.shot}
+                      alt={`${c.name} website`}
+                      loading="lazy"
+                      class="absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                  )}
+
+                  <span class="absolute right-4 top-4 z-10 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </span>
-                ))}
+                </div>
+              </a>
+              <div class="mt-4">
+                <div class="flex items-baseline justify-between gap-3">
+                  <h3 class="font-display text-xl font-semibold tracking-tightest transition-colors duration-300 group-hover:text-accent">
+                    {c.name}
+                  </h3>
+                  {c.links.map((l) => (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                      class="shrink-0 font-mono text-[0.68rem] lowercase tracking-wider text-ink-faint underline-offset-4 transition-colors hover:text-accent hover:underline"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ))}
+                </div>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">{c.summary}</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  {c.tags.map((t) => (
+                    <span class="rounded-full border border-line px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wide text-ink-muted">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                {c.links.map((l) => (
-                  <a
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener"
-                    class="font-mono text-[0.7rem] lowercase tracking-wider text-ink-faint underline-offset-4 transition-colors hover:text-accent hover:underline"
-                  >
-                    {l.label} ↗
-                  </a>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))
+            </article>
+          );
+        })
       }
     </div>
 
@@ -120,10 +172,6 @@ const clients = [
         linear-gradient(rgb(var(--ink) / 0.06) 1px, transparent 1px),
         linear-gradient(90deg, rgb(var(--ink) / 0.06) 1px, transparent 1px);
       background-size: 38px 38px;
-    }
-    .work-glow {
-      background: radial-gradient(circle, rgb(var(--lime) / 0.55), transparent 65%);
-      filter: blur(34px);
     }
   </style>
 </section>
