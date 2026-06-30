@@ -1,0 +1,108 @@
+---
+// Mobile-only "scroll to top" orb. Appears bottom-right once the page is
+// scrolled down; hidden on md+ screens. Uses Lenis smooth-scroll when available.
+---
+
+<button id="scrollTopOrb" class="scroll-orb md:hidden" type="button" aria-label="Scroll to top">
+  <span class="orb-glow" aria-hidden="true"></span>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V6M12 6l-6 6M12 6l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<style>
+  .scroll-orb {
+    position: fixed;
+    right: 1.05rem;
+    bottom: 1.05rem;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    background: rgb(var(--lime));
+    color: #0a0a0b;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.38),
+      0 0 0 1px rgba(199, 249, 78, 0.55),
+      0 0 24px 2px rgba(199, 249, 78, 0.45);
+    /* hidden until scrolled */
+    opacity: 0;
+    transform: translateY(16px) scale(0.85);
+    pointer-events: none;
+    transition:
+      opacity 0.35s var(--ease-out),
+      transform 0.35s var(--ease-out);
+  }
+  .scroll-orb svg { position: relative; z-index: 1; }
+
+  /* soft pulsing halo so it reads as a hovering orb */
+  .orb-glow {
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(199, 249, 78, 0.5) 0%, transparent 70%);
+    opacity: 0.6;
+  }
+
+  .scroll-orb.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    animation: orbFloat 3.2s ease-in-out infinite;
+  }
+  .scroll-orb.is-visible .orb-glow {
+    animation: orbHalo 2.4s ease-in-out infinite;
+  }
+  .scroll-orb:active {
+    transform: scale(0.9);
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+  }
+  @keyframes orbHalo {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.12); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-orb.is-visible,
+    .scroll-orb.is-visible .orb-glow {
+      animation: none;
+    }
+  }
+
+  /* Mobile only — hide on tablet/desktop. Done here (not via Tailwind md:hidden)
+     because Astro's scoped styles out-rank the utility's specificity. */
+  @media (min-width: 768px) {
+    .scroll-orb {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const orb = document.getElementById('scrollTopOrb');
+  if (orb) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const onScroll = () => {
+      orb.classList.toggle('is-visible', window.scrollY > 520);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    orb.addEventListener('click', () => {
+      // Prefer the shared Lenis instance for a consistent smooth scroll
+      const lenis = (window as any).lenis;
+      if (lenis && !reduced) {
+        lenis.scrollTo(0, { duration: 1.1 });
+      } else {
+        window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+      }
+    });
+  }
+</script>
