@@ -1,0 +1,70 @@
+---
+// Organization structured data (JSON-LD) for the homepage. Helps Google/AI
+// search build a knowledge entity for Growth Local (name, logo, contact,
+// founder, socials). Rendered into <head> via the Base "head" slot.
+import { ralph } from '../data/author';
+
+const site = (Astro.site ?? new URL('https://growthlocal.com')).toString().replace(/\/$/, '');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name: 'Growth Local',
+  alternateName: 'Growth Local LLC',
+  url: `${site}/`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${site}/brand/gl-avatar.png`,
+    width: 512,
+    height: 512,
+  },
+  image: `${site}/og-cover.png`,
+  description:
+    'Growth Local is a veteran-owned digital studio founded in 2020 in Colorado Springs, Colorado, offering web development, AI consulting, SEO, and digital marketing — including modern AI-search optimization (GEO/AEO) — with local roots and national reach.',
+  slogan: 'Local roots. National reach.',
+  foundingDate: '2020',
+  email: 'contact@growthlocal.com',
+  telephone: '+1-678-631-6518',
+  founder: {
+    '@type': 'Person',
+    name: ralph.name,
+    jobTitle: ralph.role,
+    url: `${site}/blog/author/${ralph.slug}`,
+    sameAs: [ralph.linkedin],
+  },
+  knowsAbout: [
+    'Search Engine Optimization',
+    'Generative Engine Optimization',
+    'Answer Engine Optimization',
+    'Web Development',
+    'AI Consulting',
+    'Digital Marketing',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Colorado Springs',
+    addressRegion: 'CO',
+    addressCountry: 'US',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'contact@growthlocal.com',
+    telephone: '+1-678-631-6518',
+    areaServed: 'US',
+    availableLanguage: 'English',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/growthlocal/',
+    'https://www.instagram.com/growthlocal/',
+    'https://www.facebook.com/growthlocal',
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

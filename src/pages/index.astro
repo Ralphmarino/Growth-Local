@@ -14,9 +14,11 @@ import FAQ from '../components/FAQ.astro';
 import Contact from '../components/Contact.astro';
 import Badges from '../components/Badges.astro';
 import Footer from '../components/Footer.astro';
+import OrgSchema from '../components/OrgSchema.astro';
 ---
 
 <Base>
+  <OrgSchema slot="head" />
   <Nav />
   <main id="main">
     <Hero />
