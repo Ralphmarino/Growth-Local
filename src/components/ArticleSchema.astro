@@ -1,0 +1,41 @@
+---
+// BlogPosting (Article) structured data for individual blog posts. Wires the
+// post to its author (Ralph) and publisher (Growth Local Organization @id from
+// the homepage graph). Rendered into <head> via the Base "head" slot.
+import type { CollectionEntry } from 'astro:content';
+import { ralph } from '../data/author';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+
+const site = (Astro.site ?? new URL('https://growthlocal.com')).toString().replace(/\/$/, '');
+const url = `${site}/blog/${post.slug}`;
+const published = post.data.pubDate.toISOString();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${url}/#article`,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  url,
+  headline: post.data.title.slice(0, 110),
+  description: post.data.description,
+  datePublished: published,
+  dateModified: published,
+  inLanguage: 'en-US',
+  image: `${site}/og-cover.png`,
+  ...(post.data.category ? { articleSection: post.data.category } : {}),
+  ...(post.data.tags?.length ? { keywords: post.data.tags.join(', ') } : {}),
+  author: {
+    '@type': 'Person',
+    name: ralph.name,
+    url: `${site}/blog/author/${ralph.slug}`,
+    sameAs: [ralph.linkedin],
+  },
+  publisher: { '@id': `${site}/#organization` },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
