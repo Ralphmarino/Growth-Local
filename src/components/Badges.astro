@@ -17,8 +17,18 @@ const awards = [
 ];
 
 const groups = [
-  { label: 'Partners & Accreditations', items: partners },
-  { label: 'Awards & Recognition', items: awards },
+  {
+    label: 'Partners & Accreditations',
+    items: partners,
+    chip: 'h-24 px-6',
+    img: 'max-h-14',
+  },
+  {
+    label: 'Awards & Recognition',
+    items: awards,
+    chip: 'h-32 px-7 md:h-36 md:px-8',
+    img: 'max-h-20 md:max-h-24',
+  },
 ];
 ---
 
@@ -35,14 +45,20 @@ const groups = [
                 <li>
                   <Tag
                     {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}
-                    class="group flex h-24 items-center justify-center rounded-xl border border-line bg-base-800/40 px-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-base-700/60"
+                    class:list={[
+                      'group flex items-center justify-center rounded-xl border border-line bg-base-800/40 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-base-700/60',
+                      g.chip,
+                    ]}
                     aria-label={b.alt}
                   >
                     <img
                       src={b.src}
                       alt={b.alt}
                       loading="lazy"
-                      class="max-h-14 w-auto opacity-80 grayscale-[0.25] transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                      class:list={[
+                        'w-auto opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0',
+                        g.img,
+                      ]}
                     />
                   </Tag>
                 </li>
