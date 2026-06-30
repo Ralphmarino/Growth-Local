@@ -32,14 +32,14 @@ const all = [...partners, ...awards];
             <li>
               <Tag
                 {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}
-                class="group flex h-16 items-center justify-center rounded-lg border border-line bg-base-800/40 px-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-line hover:bg-base-700/60"
+                class="group flex h-24 items-center justify-center rounded-xl border border-line bg-base-800/40 px-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-base-700/60"
                 aria-label={b.alt}
               >
                 <img
                   src={b.src}
                   alt={b.alt}
                   loading="lazy"
-                  class="max-h-9 w-auto opacity-50 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                  class="max-h-14 w-auto opacity-80 grayscale-[0.25] transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                 />
               </Tag>
             </li>
