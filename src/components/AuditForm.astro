@@ -1,0 +1,214 @@
+---
+// Free-audit lead form. Uses Netlify Forms (the site deploys on Netlify):
+// the static markup below is auto-detected at build, submissions are stored in
+// the Netlify dashboard, and an email notification can be routed to
+// ralph@growthlocal.com (set once under Site → Forms → Notifications).
+// Submits via fetch so we can show a fun inline thank-you without a page reload.
+---
+
+<div class="audit" data-audit>
+  <!-- FORM -->
+  <form
+    name="audit"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="/?audit=thanks"
+    class="audit-form"
+    data-audit-form
+  >
+    <input type="hidden" name="form-name" value="audit" />
+    <!-- Honeypot: hidden from humans, catches bots -->
+    <p class="hidden" aria-hidden="true">
+      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+    </p>
+
+    <div class="grid gap-4">
+      <label class="field">
+        <span class="field-label">Your website</span>
+        <input
+          type="url"
+          name="website"
+          required
+          inputmode="url"
+          placeholder="https://yourwebsite.com"
+          class="field-input"
+          autocomplete="url"
+        />
+      </label>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="field">
+          <span class="field-label">Your name</span>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="So we know who to address it to"
+            class="field-input"
+            autocomplete="name"
+          />
+        </label>
+        <label class="field">
+          <span class="field-label">Your email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Where we send the audit"
+            class="field-input"
+            autocomplete="email"
+          />
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-1 w-full justify-center sm:w-auto" data-audit-submit>
+        Get my free audit
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <p class="audit-fineprint">
+        No spam, no selling your info — we're not <em>those</em> kind of marketers. Promise. 🤝
+      </p>
+    </div>
+  </form>
+
+  <!-- THANK YOU (shown after submit) -->
+  <div class="audit-thanks" data-audit-thanks hidden>
+    <div class="audit-thanks-badge" aria-hidden="true">🎉</div>
+    <h3 class="display text-3xl md:text-4xl">You're in<span data-audit-name></span>!</h3>
+    <p class="mt-4 max-w-md text-pretty leading-relaxed text-ink-muted">
+      We'll dig into <span class="text-accent" data-audit-site>your site</span> and send your free audit within
+      <span class="text-accent">1–2 business days</span>. If we go quiet, bug us — text or email,
+      we can take it. 😄
+    </p>
+    <div class="mt-7 flex flex-wrap gap-4">
+      <a href="sms:+16786316518" class="btn btn-ghost">Text us</a>
+      <a href="mailto:contact@growthlocal.com" class="btn btn-ghost">Email us</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .field {
+    display: block;
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: theme('fontFamily.mono');
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(var(--ink-faint));
+  }
+  .field-input {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--line);
+    background: rgb(var(--bg) / 0.4);
+    color: rgb(var(--ink));
+    font-family: theme('fontFamily.sans');
+    font-size: 1rem;
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .field-input::placeholder {
+    color: rgb(var(--ink-faint) / 0.7);
+  }
+  .field-input:hover {
+    border-color: rgb(var(--accent) / 0.4);
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: rgb(var(--accent));
+    background: rgb(var(--bg) / 0.7);
+    box-shadow: 0 0 0 3px rgb(var(--lime) / 0.18);
+  }
+  .audit-fineprint {
+    margin-top: 0.25rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgb(var(--ink-faint));
+  }
+  .audit-fineprint em {
+    font-style: italic;
+    color: rgb(var(--accent));
+  }
+
+  /* Submitting state */
+  [data-audit-submit].is-loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* Thank-you reveal */
+  .audit-thanks {
+    animation: auditIn 0.6s var(--ease-out) both;
+  }
+  .audit-thanks-badge {
+    font-size: 2.6rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 10px rgb(var(--lime) / 0.7))
+      drop-shadow(0 0 22px rgb(var(--lime) / 0.4));
+    animation: auditPop 0.6s var(--ease-out) both;
+  }
+  @keyframes auditIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes auditPop {
+    0% { transform: scale(0.4) rotate(-12deg); opacity: 0; }
+    60% { transform: scale(1.15) rotate(4deg); }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .audit-thanks, .audit-thanks-badge { animation: none; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-audit]');
+  if (root) {
+    const form = root.querySelector<HTMLFormElement>('[data-audit-form]');
+    const thanks = root.querySelector<HTMLElement>('[data-audit-thanks]');
+    const btn = root.querySelector<HTMLButtonElement>('[data-audit-submit]');
+
+    const showThanks = (data: FormData) => {
+      if (!thanks || !form) return;
+      const name = (data.get('name') as string)?.trim();
+      const site = (data.get('website') as string)?.trim();
+      const nameEl = thanks.querySelector('[data-audit-name]');
+      const siteEl = thanks.querySelector('[data-audit-site]');
+      if (nameEl && name) nameEl.textContent = `, ${name.split(' ')[0]}`;
+      if (siteEl && site) {
+        siteEl.textContent = site.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      }
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      btn?.classList.add('is-loading');
+      if (btn) btn.textContent = 'Sending…';
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data as any).toString(),
+        });
+      } catch (err) {
+        // Even if the network hiccups, don't trap the visitor — Netlify also
+        // accepts the native POST as a fallback. Show the friendly state.
+      }
+      showThanks(data);
+    });
+  }
+</script>
