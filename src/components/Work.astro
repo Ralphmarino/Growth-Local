@@ -1,7 +1,7 @@
 ---
-// Real clients. `logo` shows at rest on a per-brand tile (`tile`: light|dark
-// for contrast, or `cover` for full-bleed banners/screenshots). `shot` (the
-// homepage screenshot) crossfades in on hover when available.
+// Real clients. `logo` shows at rest on a per-brand tile (`tile`: dark for
+// light/white logos, light for dark logos — fixed colors so they read in every
+// theme). `shot` (the homepage screenshot) crossfades in on hover.
 const clients = [
   {
     name: 'Analog Alien',
@@ -24,6 +24,16 @@ const clients = [
     links: [{ label: 'cloud9recording.com', href: 'https://cloud9recording.com/' }],
   },
   {
+    name: 'Elixinol',
+    slug: 'elixinol',
+    summary: 'SEO & GEO for a global wellness brand.',
+    tags: ['SEO', 'GEO'],
+    logo: '/work/elixinol-logo.png',
+    tile: 'dark',
+    shot: '/work/elixinol-screenshot.png',
+    links: [{ label: 'elixinol.com', href: 'https://elixinol.com/' }],
+  },
+  {
     name: 'Yes Energy',
     slug: 'yes-energy',
     summary: 'SEO, site-migration assistance, retention & mitigation.',
@@ -42,26 +52,6 @@ const clients = [
     tile: 'light',
     shot: '/work/bail-agent-network-screenshot.png',
     links: [{ label: 'bailagentnetwork.com', href: 'https://www.bailagentnetwork.com/' }],
-  },
-  {
-    name: 'Kavasutra Kava Bars',
-    slug: 'kavasutra',
-    summary: 'SEO & GEO strategy and consulting.',
-    tags: ['SEO', 'GEO', 'Consulting'],
-    logo: '/work/kavasutra-logo.jpg',
-    tile: 'cover',
-    shot: '/work/kavasutra-screenshot.png',
-    links: [{ label: 'kavasutra.com', href: 'https://www.kavasutra.com/' }],
-  },
-  {
-    name: 'Elixinol',
-    slug: 'elixinol',
-    summary: 'SEO & GEO for a global wellness brand.',
-    tags: ['SEO', 'GEO'],
-    logo: '/work/elixinol-logo.png',
-    tile: 'dark',
-    shot: '/work/elixinol-screenshot.png',
-    links: [{ label: 'elixinol.com', href: 'https://elixinol.com/' }],
   },
   {
     name: 'Love, Georgie',
@@ -90,44 +80,24 @@ const clients = [
     <div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {
         clients.map((c, i) => {
-          const tileBg =
-            c.tile === 'light' ? 'bg-white' : c.tile === 'cover' ? 'bg-base-900' : 'bg-base-900';
+          const light = c.tile === 'light';
           return (
             <article class="reveal group" style={`--reveal-delay:${(i % 3) * 80}ms`}>
               <a href={c.links[0].href} target="_blank" rel="noopener" class="block" aria-label={c.name}>
-                <div class:list={['relative aspect-[4/3] overflow-hidden rounded-xl border border-line', tileBg]}>
-                  {/* Resting visual: logo (contained) or banner/screenshot (cover) */}
-                  {c.tile === 'cover' ? (
-                    <img
-                      src={c.logo ?? c.shot}
-                      alt={c.name}
-                      loading="lazy"
-                      class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <>
-                      {c.tile === 'dark' && (
-                        <div class="work-grid absolute inset-0 opacity-60" aria-hidden="true" />
-                      )}
-                      <img
-                        src={c.logo}
-                        alt={c.name}
-                        loading="lazy"
-                        class="absolute inset-0 m-auto max-h-[44%] max-w-[72%] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    </>
-                  )}
-
-                  {/* Hover: reveal the homepage screenshot if we have one */}
-                  {c.shot && (
-                    <img
-                      src={c.shot}
-                      alt={`${c.name} website`}
-                      loading="lazy"
-                      class="absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    />
-                  )}
-
+                <div class:list={['relative aspect-[4/3] overflow-hidden rounded-xl border border-line', light ? 'bg-white' : 'bg-[#0d0d0f]']}>
+                  <div class:list={['absolute inset-0', light ? 'work-grid-l' : 'work-grid-d']} aria-hidden="true" />
+                  <img
+                    src={c.logo}
+                    alt={c.name}
+                    loading="lazy"
+                    class="absolute inset-0 m-auto max-h-[42%] max-w-[72%] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <img
+                    src={c.shot}
+                    alt={`${c.name} website`}
+                    loading="lazy"
+                    class="absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  />
                   <span class="absolute right-4 top-4 z-10 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </span>
@@ -173,10 +143,17 @@ const clients = [
   </div>
 
   <style>
-    .work-grid {
+    /* Same grid texture on both tile colours — light lines on dark, dark on white */
+    .work-grid-d {
       background-image:
-        linear-gradient(rgb(var(--ink) / 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgb(var(--ink) / 0.06) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+    .work-grid-l {
+      background-image:
+        linear-gradient(rgba(10, 10, 11, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10, 10, 11, 0.06) 1px, transparent 1px);
       background-size: 38px 38px;
     }
   </style>
