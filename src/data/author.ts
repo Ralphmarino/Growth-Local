@@ -32,7 +32,7 @@ export const ralph = {
     { icon: '🟢', label: 'Favorite color', value: 'Green, obviously' },
     { icon: '✈️', label: 'Loves', value: 'Traveling anywhere + live music' },
     { icon: '🧱', label: 'Hobbies', value: 'Legos, trading cards & sports data' },
-    { icon: '🏎️', label: 'Garage', value: 'Ford guy + EV guy — Shelby GT500 & Tesla Model Y' },
+    { icon: '🏎️', label: 'Garage', value: '2011 Shelby GT500 & 2026 Tesla Model Y' },
     { icon: '🎮', label: 'Team', value: 'Xbox · iPhone' },
     { icon: '🧸', label: 'Weird flex', value: '120+ Funko Pops and counting' },
   ],
