@@ -90,15 +90,15 @@ const clients = [
                     src={c.logo}
                     alt={c.name}
                     loading="lazy"
-                    class="absolute inset-0 m-auto max-h-[42%] max-w-[72%] object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                    class="work-logo absolute inset-0 m-auto max-h-[42%] max-w-[72%] object-contain transition-all duration-500 group-hover:scale-[1.03]"
                   />
                   <img
                     src={c.shot}
                     alt={`${c.name} website`}
                     loading="lazy"
-                    class="absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    class="work-shot absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   />
-                  <span class="absolute right-4 top-4 z-10 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true">
+                  <span class="work-arrow absolute right-4 top-4 z-10 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-lime text-base-900 opacity-0 shadow-lg transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </span>
                 </div>
@@ -155,6 +155,13 @@ const clients = [
         linear-gradient(rgba(10, 10, 11, 0.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(10, 10, 11, 0.06) 1px, transparent 1px);
       background-size: 38px 38px;
+    }
+    /* Touch devices can't hover — reveal the live screenshot by default so
+       mobile visitors still see each client's homepage, with the tap arrow shown. */
+    @media (hover: none) {
+      .work-shot { opacity: 1; }
+      .work-logo { opacity: 0; }
+      .work-arrow { opacity: 1; transform: none; }
     }
   </style>
 </section>

@@ -57,20 +57,35 @@ const { size = 96, class: cls = '' } = Astro.props;
     opacity: 1;
     transform: scale(1);
   }
-  /* Touch devices can't hover — show the real photo so it's never stuck on the memoji */
+  /* Touch devices can't hover — so gently auto-crossfade memoji <-> photo on a
+     loop, giving mobile users the same playful reveal without a pointer. */
   @media (hover: none) {
     .av-memoji {
-      opacity: 0;
+      animation: avFadeMemoji 6s ease-in-out infinite;
     }
     .av-photo {
-      opacity: 1;
-      transform: scale(1);
+      animation: avFadePhoto 6s ease-in-out infinite;
     }
+  }
+  @keyframes avFadeMemoji {
+    0%, 38% { opacity: 1; transform: scale(1); }
+    50%, 88% { opacity: 0; transform: scale(0.96); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes avFadePhoto {
+    0%, 38% { opacity: 0; transform: scale(1.06); }
+    50%, 88% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.06); }
   }
   @media (prefers-reduced-motion: reduce) {
     .av {
       transition: opacity 0.2s linear;
       transform: none !important;
+    }
+    /* No looping animation when motion is reduced — settle on the real photo */
+    @media (hover: none) {
+      .av-memoji { animation: none; opacity: 0; }
+      .av-photo { animation: none; opacity: 1; transform: none; }
     }
   }
 </style>

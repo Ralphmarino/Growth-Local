@@ -11,6 +11,9 @@ const {
   title = 'Growth Local — Web Development, AI & Growth Studio · Colorado Springs',
   description = 'Growth Local is a Colorado Springs digital studio building high-performance websites, practical AI, and compounding growth for ambitious brands nationwide.',
 } = Astro.props;
+
+// Absolute URL so social scrapers (Slack, iMessage, X, LinkedIn) resolve it.
+const ogImage = new URL('/og-cover.png', Astro.site ?? 'https://growthlocal.com').href;
 ---
 
 <!doctype html>
@@ -41,8 +44,11 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/example.png" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Fonts: characterful grotesque display + clean body + technical mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
