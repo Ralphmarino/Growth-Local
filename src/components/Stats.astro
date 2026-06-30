@@ -1,7 +1,7 @@
 ---
 const stats = [
   { value: '120', suffix: '%', label: 'Avg. organic traffic lift' },
-  { value: '40', suffix: '+', label: 'Projects shipped' },
+  { value: '100', suffix: '+', label: 'Shots of espresso', perpetual: true },
   { value: '98', suffix: '', label: 'Avg. Lighthouse score' },
   { value: '2020', suffix: '', label: 'Founded in Colorado Springs', noCount: true },
 ];
@@ -13,7 +13,7 @@ const stats = [
       stats.map((s, i) => (
         <div class="reveal border-l border-line pl-6" style={`--reveal-delay:${i * 80}ms`}>
           <p class="display flex items-baseline text-[clamp(3rem,8vw,6rem)] leading-none text-ink">
-            <span data-count={s.noCount ? undefined : s.value}>{s.value}</span>
+            <span data-count={s.noCount ? undefined : s.value} data-perpetual={s.perpetual ? '' : undefined}>{s.value}</span>
             <span class="text-accent">{s.suffix}</span>
           </p>
           <p class="mt-4 max-w-[12rem] text-sm leading-snug text-ink-muted">

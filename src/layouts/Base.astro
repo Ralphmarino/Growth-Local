@@ -151,6 +151,16 @@ const {
                       ? Math.round(obj.v).toString()
                       : obj.v.toFixed(1);
                 },
+                onComplete: () => {
+                  // Fun: espresso counter keeps slowly ticking up
+                  if (el.dataset.perpetual !== undefined) {
+                    let n = Math.round(end);
+                    setInterval(() => {
+                      n += 1;
+                      el.textContent = n.toString();
+                    }, 4000);
+                  }
+                },
               }),
           });
         });

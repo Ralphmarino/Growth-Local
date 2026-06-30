@@ -1,5 +1,5 @@
 ---
-title: "27 Frequently Asked Questions About SEO: <br>What Every Client Should Know"
+title: "27 Frequently Asked Questions About SEO: What Every Client Should Know"
 description: "Looking to navigate the world of SEO? Get answers to the 27 most commonly asked questions about SEO that every business owner should know. Read now!"
 pubDate: 2023-09-02
 category: "SEO"
