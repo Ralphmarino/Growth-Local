@@ -6,8 +6,7 @@ import { ralph } from '../data/author';
 
 const site = (Astro.site ?? new URL('https://growthlocal.com')).toString().replace(/\/$/, '');
 
-const schema = {
-  '@context': 'https://schema.org',
+const organization = {
   '@type': 'Organization',
   '@id': `${site}/#organization`,
   name: 'Growth Local',
@@ -64,6 +63,25 @@ const schema = {
     'https://www.instagram.com/growthlocal/',
     'https://www.facebook.com/growthlocal',
   ],
+};
+
+// Note: no SearchAction/sitelinks-searchbox — the site has no on-site search
+// endpoint, and Google penalizes a SearchAction that points to a non-working
+// search. Add one only if/when a real /search page exists.
+const website = {
+  '@type': 'WebSite',
+  '@id': `${site}/#website`,
+  url: `${site}/`,
+  name: 'Growth Local',
+  description:
+    'Web development, AI consulting, SEO, and digital marketing (including GEO/AEO) from a veteran-owned Colorado Springs studio with national reach.',
+  publisher: { '@id': `${site}/#organization` },
+  inLanguage: 'en-US',
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [organization, website],
 };
 ---
 

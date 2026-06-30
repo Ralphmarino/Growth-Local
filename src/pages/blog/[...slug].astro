@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import AuthorCardCompact from '../../components/AuthorCardCompact.astro';
+import ArticleSchema from '../../components/ArticleSchema.astro';
 import { ralph } from '../../data/author';
 
 export async function getStaticPaths() {
@@ -23,6 +24,7 @@ const fmt = (d: Date) =>
 ---
 
 <Base title={`${post.data.title} · Growth Local`} description={post.data.description}>
+  <ArticleSchema post={post} slot="head" />
   <Nav />
   <main id="main">
     <article class="pt-36 md:pt-44">
