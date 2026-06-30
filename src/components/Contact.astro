@@ -23,7 +23,7 @@ import AuditForm from './AuditForm.astro';
 
     <div class="mt-12 grid gap-10 border-t border-line pt-10 lg:grid-cols-12">
       <!-- Pitch + secondary contact -->
-      <div class="reveal col-span-12 lg:col-span-5">
+      <div class="reveal min-w-0 lg:col-span-5">
         <p class="eyebrow mb-4 flex items-center gap-3">
           <span class="inline-block h-px w-8 bg-lime"></span>
           Free SEO audit
@@ -48,8 +48,8 @@ import AuditForm from './AuditForm.astro';
       </div>
 
       <!-- Audit form card -->
-      <div class="reveal col-span-12 lg:col-span-7 lg:justify-self-end lg:max-w-xl" style="--reveal-delay:120ms">
-        <div class="rounded-2xl border border-line bg-base-900/50 p-6 backdrop-blur-sm md:p-8">
+      <div class="reveal min-w-0 lg:col-span-7 lg:justify-self-end lg:max-w-xl" style="--reveal-delay:120ms">
+        <div class="rounded-2xl border border-line bg-base-900/50 p-5 backdrop-blur-sm sm:p-6 md:p-8">
           <AuditForm />
         </div>
       </div>
