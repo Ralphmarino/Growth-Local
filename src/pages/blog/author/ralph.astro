@@ -38,8 +38,8 @@ const fmt = (d: Date) =>
           <div class="md:col-span-3">
             <div class="group reveal inline-flex flex-col items-start gap-3">
               <AuthorAvatar size={150} />
-              <span class="font-mono text-[0.66rem] uppercase tracking-[0.18em] text-ink-faint">
-                ✶ hover me
+              <span class="av-hint font-mono text-[0.66rem] uppercase tracking-[0.18em] text-ink-faint">
+                ✶ <span class="av-hint-hover">hover me</span><span class="av-hint-touch">that's me</span>
               </span>
             </div>
           </div>
@@ -83,20 +83,33 @@ const fmt = (d: Date) =>
               </p>
             ))
           }
-          <dl class="reveal mt-10 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
-            <div class="bg-base-900 p-6">
-              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Experience</dt>
-              <dd class="display mt-2 text-3xl text-accent">8+ yrs</dd>
-            </div>
-            <div class="bg-base-900 p-6">
-              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Focus</dt>
-              <dd class="display mt-2 text-3xl">Technical SEO</dd>
-            </div>
-            <div class="bg-base-900 p-6">
-              <dt class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-faint">Background</dt>
-              <dd class="display mt-2 text-3xl">CS degree</dd>
-            </div>
-          </dl>
+          <div class="reveal mt-12">
+            <p class="eyebrow mb-6 flex items-center gap-3">
+              <span class="inline-block h-px w-8 bg-lime"></span>
+              Off the clock
+            </p>
+            <dl class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+              {
+                ralph.facts.map((f, i) => (
+                  <div
+                    class="reveal group flex items-start gap-4 bg-base-900 p-5 transition-colors duration-300 hover:bg-base-800/70"
+                    style={`--reveal-delay:${(i % 2) * 60}ms`}
+                  >
+                    <span
+                      class="mt-0.5 text-xl leading-none transition-transform duration-300 group-hover:scale-125"
+                      aria-hidden="true"
+                    >
+                      {f.icon}
+                    </span>
+                    <div>
+                      <dt class="font-mono text-[0.66rem] uppercase tracking-wider text-ink-faint">{f.label}</dt>
+                      <dd class="mt-1 text-pretty leading-snug text-ink transition-colors group-hover:text-accent">{f.value}</dd>
+                    </div>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
         </div>
       </div>
     </section>
@@ -136,3 +149,12 @@ const fmt = (d: Date) =>
   </main>
   <Footer />
 </Base>
+
+<style>
+  /* Avatar hint adapts: "hover me" on pointers, "that's me" on touch (auto-fade) */
+  .av-hint-touch { display: none; }
+  @media (hover: none) {
+    .av-hint-hover { display: none; }
+    .av-hint-touch { display: inline; }
+  }
+</style>
