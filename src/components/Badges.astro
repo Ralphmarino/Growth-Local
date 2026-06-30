@@ -16,36 +16,41 @@ const awards = [
   { src: '/badges/top-digital-marketing.png', alt: 'Top Digital Marketing Company — Clutch', href: null },
 ];
 
-const all = [...partners, ...awards];
+const groups = [
+  { label: 'Partners & Accreditations', items: partners },
+  { label: 'Awards & Recognition', items: awards },
+];
 ---
 
-<section class="border-t border-line py-[clamp(2.5rem,5vw,4rem)]">
-  <div class="container-wide">
-    <p class="eyebrow reveal mb-8 text-center md:text-left">
-      Accredited &amp; recognized · Veteran-owned
-    </p>
-    <ul class="flex flex-wrap items-center justify-center gap-3 md:justify-start md:gap-4">
-      {
-        all.map((b) => {
-          const Tag = b.href ? 'a' : 'div';
-          return (
-            <li>
-              <Tag
-                {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}
-                class="group flex h-24 items-center justify-center rounded-xl border border-line bg-base-800/40 px-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-base-700/60"
-                aria-label={b.alt}
-              >
-                <img
-                  src={b.src}
-                  alt={b.alt}
-                  loading="lazy"
-                  class="max-h-14 w-auto opacity-80 grayscale-[0.25] transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
-                />
-              </Tag>
-            </li>
-          );
-        })
-      }
-    </ul>
+<section class="border-t border-line py-[clamp(3rem,6vw,5rem)]">
+  <div class="container-wide space-y-10 md:space-y-12">
+    {
+      groups.map((g) => (
+        <div>
+          <p class="eyebrow reveal mb-6 text-center md:text-left">{g.label}</p>
+          <ul class="flex flex-wrap items-center justify-center gap-3 md:justify-start md:gap-4">
+            {g.items.map((b) => {
+              const Tag = b.href ? 'a' : 'div';
+              return (
+                <li>
+                  <Tag
+                    {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}
+                    class="group flex h-24 items-center justify-center rounded-xl border border-line bg-base-800/40 px-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-base-700/60"
+                    aria-label={b.alt}
+                  >
+                    <img
+                      src={b.src}
+                      alt={b.alt}
+                      loading="lazy"
+                      class="max-h-14 w-auto opacity-80 grayscale-[0.25] transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                    />
+                  </Tag>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))
+    }
   </div>
 </section>
