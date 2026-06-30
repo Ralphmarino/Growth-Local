@@ -25,7 +25,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   const body = `# Growth Local
 
-> Growth Local is a veteran-owned digital studio founded in 2020 in Colorado Springs, Colorado. We help businesses grow online with web development, AI consulting, SEO, and digital marketing — including modern AI-search optimization (GEO/AEO). Local roots, national reach.
+> Growth Local is a veteran-owned digital studio founded in 2020 in Colorado Springs, Colorado. We help businesses grow online with web development, AI consulting, SEO, and digital marketing, including modern AI-search optimization (GEO/AEO). Local roots, national reach.
 
 Founder & operator: ${ralph.name}, ${ralph.role} (8+ years in digital marketing).
 Contact: contact@growthlocal.com · 678-631-6518 · Colorado Springs, CO (serving clients nationwide).
@@ -33,7 +33,7 @@ Contact: contact@growthlocal.com · 678-631-6518 · Colorado Springs, CO (servin
 ## Services
 - [Web Development](${base}/#services): Fast, accessible websites and web apps built on Next.js/Astro, with strong Core Web Vitals.
 - [AI Consulting](${base}/#services): Practical automations, assistants, and data workflows teams actually use.
-- [SEO](${base}/services/seo): Full-funnel program — SEO audit, technical, on-page, off-page, CRO, analytics & reporting, and GEO/AEO (Generative/Answer Engine Optimization).
+- [SEO](${base}/services/seo): Full-funnel program: SEO audit, technical, on-page, off-page, CRO, analytics & reporting, and GEO/AEO (Generative/Answer Engine Optimization).
 - [Digital Marketing](${base}/#services): Paid media, social, email, and analytics working as one growth system.
 
 ## Key pages

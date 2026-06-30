@@ -2,11 +2,11 @@
 const faqs = [
   {
     q: 'What is Growth Local?',
-    a: 'Growth Local is a digital studio founded in 2020 in Colorado Springs, Colorado. We help businesses grow online through web development, AI consulting, SEO, and digital marketing — combining local, hands-on partnership with a national-caliber standard of craft.',
+    a: 'Growth Local is a digital studio founded in 2020 in Colorado Springs, Colorado. We help businesses grow online through web development, AI consulting, SEO, and digital marketing, combining local, hands-on partnership with a national-caliber standard of craft.',
   },
   {
     q: 'Does Growth Local only work with businesses in Colorado Springs?',
-    a: 'No. While we are proudly based in Colorado Springs, we work with clients across the United States — from small local businesses to international and enterprise brands. Our roots are local; our reach is national.',
+    a: 'No. While we are proudly based in Colorado Springs, we work with clients across the United States, from small local businesses to international and enterprise brands. Our roots are local; our reach is national.',
   },
   {
     q: 'What services does Growth Local offer?',
@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: 'What is SEO and why does my business need it?',
-    a: 'SEO (Search Engine Optimization) is the practice of improving your website so it ranks higher in search engines like Google and gets found by people already looking for what you offer. It matters because it delivers compounding, durable traffic and one of the highest returns on investment in marketing — unlike ads, the visibility keeps working after you stop paying.',
+    a: 'SEO (Search Engine Optimization) is the practice of improving your website so it ranks higher in search engines like Google and gets found by people already looking for what you offer. It matters because it delivers compounding, durable traffic and one of the highest returns on investment in marketing. Unlike ads, the visibility keeps working after you stop paying.',
   },
   {
     q: 'What is GEO and AEO (AI search optimization)?',
@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: 'How is GEO different from traditional SEO?',
-    a: 'Traditional SEO aims to rank your pages in a list of blue links. GEO aims to make your content the answer an AI model quotes and attributes. The fundamentals overlap — clear, credible, well-structured content and strong technical foundations help with both — but GEO adds a focus on entity authority, structured data, and being unambiguously citable by language models.',
+    a: 'Traditional SEO aims to rank your pages in a list of blue links. GEO aims to make your content the answer an AI model quotes and attributes. The fundamentals overlap (clear, credible, well-structured content and strong technical foundations help with both), but GEO adds a focus on entity authority, structured data, and being unambiguously citable by language models.',
   },
   {
     q: 'How long does SEO take to show results?',
@@ -34,7 +34,9 @@ const faqs = [
   },
   {
     q: 'How do I get started with Growth Local?',
-    a: 'Reach out for a free consultation or SEO audit. We will review your goals, show you the gaps and opportunities, and lay out the fastest credible path to growth — then tell you honestly whether we are the right team to build it. Email contact@growthlocal.com or call 678-631-6518.',
+    a: 'Reach out for a free consultation or SEO audit. We will review your goals, show you the gaps and opportunities, and lay out the fastest credible path to growth, then tell you honestly whether we are the right team to build it. Email contact@growthlocal.com or call or text 678-631-6518.',
+    aHtml:
+      'Reach out for a free consultation or SEO audit. We will review your goals, show you the gaps and opportunities, and lay out the fastest credible path to growth, then tell you honestly whether we are the right team to build it. Email <a href="mailto:contact@growthlocal.com" class="text-accent underline-offset-4 hover:underline">contact@growthlocal.com</a> or <a href="sms:+16786316518" class="text-accent underline-offset-4 hover:underline">call or text 678-631-6518</a>.',
   },
 ];
 
@@ -80,9 +82,7 @@ const faqSchema = {
                   <span class="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform duration-300 group-open:rotate-90 group-open:opacity-0"></span>
                 </span>
               </summary>
-              <p class="max-w-2xl text-pretty pb-7 leading-relaxed text-ink-muted">
-                {f.a}
-              </p>
+              <p class="max-w-2xl text-pretty pb-7 leading-relaxed text-ink-muted" set:html={f.aHtml ?? f.a} />
             </details>
           ))
         }
