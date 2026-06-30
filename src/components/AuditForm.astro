@@ -31,33 +31,42 @@
           name="website"
           required
           inputmode="url"
-          placeholder="https://yourwebsite.com"
+          placeholder="yourwebsite.com"
           class="field-input"
           autocomplete="url"
+          data-lpignore="true"
+          data-1p-ignore
+          data-form-type="other"
         />
       </label>
 
       <div class="grid gap-4 sm:grid-cols-2">
         <label class="field">
-          <span class="field-label">Your name</span>
+          <span class="field-label">Your name <span class="field-hint">— who to address it to</span></span>
           <input
             type="text"
             name="name"
             required
-            placeholder="So we know who to address it to"
+            placeholder="Jane Smith"
             class="field-input"
             autocomplete="name"
+            data-lpignore="true"
+            data-1p-ignore
+            data-form-type="other"
           />
         </label>
         <label class="field">
-          <span class="field-label">Your email</span>
+          <span class="field-label">Your email <span class="field-hint">— where we send it</span></span>
           <input
             type="email"
             name="email"
             required
-            placeholder="Where we send the audit"
+            placeholder="you@email.com"
             class="field-input"
             autocomplete="email"
+            data-lpignore="true"
+            data-1p-ignore
+            data-form-type="other"
           />
         </label>
       </div>
@@ -102,9 +111,15 @@
     text-transform: uppercase;
     color: rgb(var(--ink-faint));
   }
+  .field-hint {
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: rgb(var(--ink-faint) / 0.65);
+  }
   .field-input {
     width: 100%;
-    padding: 0.9rem 1.1rem;
+    /* extra right padding leaves room for password-manager icons */
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
     border-radius: 0.75rem;
     border: 1px solid var(--line);
     background: rgb(var(--bg) / 0.4);
