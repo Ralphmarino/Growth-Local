@@ -11,17 +11,17 @@ export const ralph = {
   memoji: '/team/ralph-memoji-true.png',
   photo: '/team/ralph-no-ring.png',
   bioShort:
-    'Ralph is the founder and operator of Growth Local — an experienced Technical SEO specialist who has spent 8+ years turning search into measurable growth for local businesses, international brands, and enterprise clients.',
+    'Ralph is the founder and operator of Growth Local, an experienced Technical SEO specialist who has spent 8+ years turning search into measurable growth for local businesses, international brands, and enterprise clients.',
   bio: [
     'Ralph Marino is an experienced and accomplished Technical SEO Specialist and co-founder of Growth Local. With over 8 years of proven experience in digital marketing, Ralph has a strong track record of delivering measurable results while leading marketing efforts in a constantly evolving digital environment.',
     'He has extensive knowledge in Search Engine Optimization and other digital marketing strategies, and has worked with a range of clients including small local businesses, international brands, and enterprise-level clients. In addition to his experience at agencies, in-house, and as a freelancer, Ralph also has a computer science degree and specialized certifications in the marketing field.',
-    'As the founder and operator of Growth Local, Ralph leads the studio day to day — setting the standard for the work and staying hands-on with clients. He is a total nerd when it comes to SEO and is always up-to-date on the latest search engine algorithms while actively engaging in the digital marketing community.',
+    'As the founder and operator of Growth Local, Ralph leads the studio day to day, setting the standard for the work and staying hands-on with clients. He is a total nerd when it comes to SEO and is always up-to-date on the latest search engine algorithms while actively engaging in the digital marketing community.',
   ],
   // The fun stuff — rendered as the "Off the clock" grid on the author page.
   facts: [
     { icon: '🎖️', label: 'Service', value: 'US Army Veteran' },
     { icon: '🗽', label: 'Born & Raised', value: 'Staten Island, NY' },
-    { icon: '🎂', label: 'Birthday', value: 'May 28 — Gemini ♊' },
+    { icon: '🎂', label: 'Birthday', value: 'May 28 · Gemini ♊' },
     { icon: '🐱', label: 'Family', value: 'Married + 4 cats' },
     { icon: '🤖', label: 'Obsession', value: 'Claude + Claude Code' },
     { icon: '🥊', label: 'Fanatic', value: 'UFC / MMA' },
