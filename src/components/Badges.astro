@@ -8,10 +8,13 @@ const partners = [
   { src: '/badges/veteran-owned-business.png', alt: 'Veteran-Owned Business', href: null },
 ];
 
-// Award badges — add files to /public/badges and entries here once available:
-//   badge-top-seo-company-colorado-gray, expertise-2025-best-seo-agency-colorado-springs,
-//   top-10-seo-firm-growth-local, top-seo-agency-upcity, top-digital-marketing-agency-growth-local
-const awards: { src: string; alt: string; href: string | null }[] = [];
+const awards = [
+  { src: '/badges/expertise-2025.png', alt: 'Expertise.com — Best Digital Marketing Agencies in Colorado Springs 2025', href: null },
+  { src: '/badges/top-10-seo-firm.png', alt: 'Best in Search — Top 10 SEO Firm', href: null },
+  { src: '/badges/upcity-top-seo.webp', alt: 'UpCity — Top SEO Agency', href: null },
+  { src: '/badges/top-seo-company.webp', alt: 'Top SEO Company — Colorado', href: null },
+  { src: '/badges/top-digital-marketing.png', alt: 'Top Digital Marketing Company — Clutch', href: null },
+];
 
 const all = [...partners, ...awards];
 ---
@@ -29,14 +32,14 @@ const all = [...partners, ...awards];
             <li>
               <Tag
                 {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}
-                class="group flex h-14 items-center justify-center rounded-lg border border-line bg-base-800/40 px-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-line hover:bg-base-700/60"
+                class="group flex h-16 items-center justify-center rounded-lg border border-line bg-base-800/40 px-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-line hover:bg-base-700/60"
                 aria-label={b.alt}
               >
                 <img
                   src={b.src}
                   alt={b.alt}
                   loading="lazy"
-                  class="max-h-7 w-auto opacity-50 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                  class="max-h-9 w-auto opacity-50 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                 />
               </Tag>
             </li>
