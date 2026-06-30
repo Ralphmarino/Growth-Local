@@ -8,8 +8,8 @@ export const ralph = {
   linkedin: 'https://www.linkedin.com/in/ralphmarino/',
   // Avatars live in /public/team. The memoji shows by default and crossfades
   // to the real photo on hover (see AuthorAvatar.astro).
-  memoji: '/team/ralph-memoji.png',
-  photo: '/team/ralph.jpg',
+  memoji: '/team/ralph-memoji-true.png',
+  photo: '/team/ralph-true.jpeg',
   bioShort:
     'Ralph is the founder and operator of Growth Local — an experienced Technical SEO specialist who has spent 8+ years turning search into measurable growth for local businesses, international brands, and enterprise clients.',
   bio: [
