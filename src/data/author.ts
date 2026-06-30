@@ -22,7 +22,7 @@ export const ralph = {
     { icon: '🎖️', label: 'Service', value: 'US Army Veteran' },
     { icon: '🗽', label: 'Born & Raised', value: 'Staten Island, NY' },
     { icon: '🎂', label: 'Birthday', value: 'May 28 — Gemini ♊' },
-    { icon: '🐱', label: 'Family', value: 'Married + 4 cats: Raja, Stella, Tula & Clara' },
+    { icon: '🐱', label: 'Family', value: 'Married + 4 cats' },
     { icon: '🤖', label: 'Obsession', value: 'Claude + Claude Code' },
     { icon: '🥊', label: 'Fanatic', value: 'UFC / MMA' },
     { icon: '🏀', label: 'Teams', value: 'NY Knicks · Yankees · Giants · Rangers' },
