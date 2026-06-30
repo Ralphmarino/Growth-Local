@@ -1,0 +1,94 @@
+---
+const faqs = [
+  {
+    q: 'What is Growth Local?',
+    a: 'Growth Local is a digital studio founded in 2020 in Colorado Springs, Colorado. We help businesses grow online through web development, AI consulting, SEO, and digital marketing — combining local, hands-on partnership with a national-caliber standard of craft.',
+  },
+  {
+    q: 'Does Growth Local only work with businesses in Colorado Springs?',
+    a: 'No. While we are proudly based in Colorado Springs, we work with clients across the United States — from small local businesses to international and enterprise brands. Our roots are local; our reach is national.',
+  },
+  {
+    q: 'What services does Growth Local offer?',
+    a: 'We offer four core services: Web Development (fast, accessible websites and web apps), AI Consulting (practical automations and AI workflows), SEO (a full-funnel search program), and Digital Marketing (paid, social, email, and analytics). Many clients combine several into one growth system.',
+  },
+  {
+    q: 'What is SEO and why does my business need it?',
+    a: 'SEO (Search Engine Optimization) is the practice of improving your website so it ranks higher in search engines like Google and gets found by people already looking for what you offer. It matters because it delivers compounding, durable traffic and one of the highest returns on investment in marketing — unlike ads, the visibility keeps working after you stop paying.',
+  },
+  {
+    q: 'What is GEO and AEO (AI search optimization)?',
+    a: 'GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) are the practice of optimizing your brand to be cited by AI tools like ChatGPT, Perplexity, and Google AI Overviews. As more people get answers directly from AI, being one of the sources those models reference is the new equivalent of ranking on page one.',
+  },
+  {
+    q: 'How is GEO different from traditional SEO?',
+    a: 'Traditional SEO aims to rank your pages in a list of blue links. GEO aims to make your content the answer an AI model quotes and attributes. The fundamentals overlap — clear, credible, well-structured content and strong technical foundations help with both — but GEO adds a focus on entity authority, structured data, and being unambiguously citable by language models.',
+  },
+  {
+    q: 'How long does SEO take to show results?',
+    a: 'Most businesses see meaningful movement within three to six months, with results compounding over time. Technical fixes and quick wins can show sooner, while competitive keywords and authority-building take longer. We set clear baselines up front and report transparently so you always know what is working.',
+  },
+  {
+    q: 'Is Growth Local a veteran-owned business?',
+    a: 'Yes. Growth Local is a veteran-owned business, founded and operated by Ralph Marino, a Technical SEO specialist with over eight years of experience in digital marketing.',
+  },
+  {
+    q: 'How do I get started with Growth Local?',
+    a: 'Reach out for a free consultation or SEO audit. We will review your goals, show you the gaps and opportunities, and lay out the fastest credible path to growth — then tell you honestly whether we are the right team to build it. Email contact@growthlocal.com or call 678-631-6518.',
+  },
+];
+
+// FAQPage structured data for SEO / AI answer engines
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="border-t border-line py-[clamp(4rem,9vw,8rem)]">
+  <div class="container-wide grid gap-10 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <p class="eyebrow reveal mb-6">
+        <span class="text-lime">[?]</span> &nbsp;FAQ
+      </p>
+      <h2 class="display text-[clamp(2.2rem,5.5vw,4.5rem)]">
+        <span class="line-mask"><span>Questions,</span></span>
+        <span class="line-mask"><span><span class="text-lime">answered.</span></span></span>
+      </h2>
+      <p class="reveal mt-6 max-w-sm text-pretty leading-relaxed text-ink-muted">
+        Everything you might want to know about Growth Local, our services, and
+        how modern search really works.
+      </p>
+    </div>
+
+    <div class="md:col-span-8">
+      <div class="border-t border-line">
+        {
+          faqs.map((f) => (
+            <details class="group border-b border-line">
+              <summary class="reveal flex cursor-pointer list-none items-start justify-between gap-6 py-6 transition-colors hover:text-lime">
+                <span class="font-display text-xl font-semibold tracking-tightest md:text-2xl">
+                  {f.q}
+                </span>
+                <span class="relative mt-1 h-4 w-4 shrink-0 text-lime" aria-hidden="true">
+                  <span class="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current"></span>
+                  <span class="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform duration-300 group-open:rotate-90 group-open:opacity-0"></span>
+                </span>
+              </summary>
+              <p class="max-w-2xl text-pretty pb-7 leading-relaxed text-ink-muted">
+                {f.a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

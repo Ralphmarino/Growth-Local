@@ -12,10 +12,9 @@ const nav = [
   { label: 'Contact', href: a('#contact') },
 ];
 const social = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Instagram', href: '#' },
-  { label: 'Dribbble', href: '#' },
-  { label: 'GitHub', href: '#' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/growthlocal/' },
+  { label: 'Instagram', href: 'https://www.instagram.com/growthlocal/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/growthlocal' },
 ];
 ---
 
@@ -23,8 +22,10 @@ const social = [
   <div class="container-wide py-14 md:py-20">
     <div class="grid gap-12 md:grid-cols-12">
       <div class="md:col-span-5">
-        <a href="/" class="flex items-center gap-2.5">
-          <span class="block h-2.5 w-2.5 rounded-full bg-lime"></span>
+        <a href="/" class="group flex items-center gap-2">
+          <span class="text-lime transition-transform duration-300 group-hover:-rotate-12">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 21A8 8 0 0 1 9.5 5.3C16 4 18 3.4 20.5 1c1.2 2.4 2 4.9 2 9 0 6.1-5.1 11-11.5 11Z"/><path d="M3 22c0-3.5 2.2-6.2 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
           <span class="font-display text-xl font-bold tracking-tightest">Growth&nbsp;Local</span>
         </a>
         <p class="mt-6 max-w-sm text-pretty leading-relaxed text-ink-muted">
@@ -49,7 +50,7 @@ const social = [
         <ul class="space-y-3">
           {social.map((l) => (
             <li>
-              <a href={l.href} class="text-ink-muted transition-colors hover:text-lime">{l.label}</a>
+              <a href={l.href} target="_blank" rel="noopener" class="text-ink-muted transition-colors hover:text-lime">{l.label}</a>
             </li>
           ))}
         </ul>
