@@ -68,6 +68,9 @@ const ogImage = new URL('/og-cover.png', Astro.site ?? 'https://growthlocal.com'
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+
+    <!-- Per-page head extras (e.g. structured data) -->
+    <slot name="head" />
   </head>
   <body>
     <a
