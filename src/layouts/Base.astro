@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import CursorFX from '../components/CursorFX.astro';
+import ScrollTop from '../components/ScrollTop.astro';
 
 interface Props {
   title?: string;
@@ -82,6 +83,7 @@ const ogImage = new URL('/og-cover.png', Astro.site ?? 'https://growthlocal.com'
     <div class="grain" aria-hidden="true"></div>
     <CursorFX />
     <slot />
+    <ScrollTop />
 
     <script>
       import Lenis from 'lenis';
@@ -116,6 +118,8 @@ const ogImage = new URL('/og-cover.png', Astro.site ?? 'https://growthlocal.com'
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
         });
+        // Expose so components (e.g. the scroll-to-top orb) can reuse it
+        (window as any).lenis = lenis;
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => lenis.raf(time * 1000));
