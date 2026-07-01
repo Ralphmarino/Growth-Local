@@ -71,7 +71,31 @@ const services: Service[] = [
                   )}
                 </h3>
                 <div class="col-span-12 md:col-span-5">
-                  <div class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-56 group-hover:opacity-100 md:max-h-0">
+                  {/* Desktop: reveal blurb + tags on hover. Fully hidden on
+                      mobile (hidden) so a touch-triggered :hover can't duplicate
+                      the always-visible mobile content below. */}
+                  <div class="hidden md:block">
+                    <div class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:max-h-56 group-hover:opacity-100">
+                      <p class="text-pretty pt-1 leading-relaxed text-ink-muted">
+                        {s.blurb}
+                      </p>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {s.tags.map((t) => (
+                          <span class="rounded-full border border-line px-3 py-1 font-mono text-[0.68rem] uppercase tracking-wide text-ink-muted">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                      {s.href && (
+                        <span class="mt-5 inline-flex font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent">
+                          Explore SEO services →
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Mobile: blurb + tags always visible (no hover on touch) */}
+                  <div class="md:hidden">
                     <p class="text-pretty pt-1 leading-relaxed text-ink-muted">
                       {s.blurb}
                     </p>
@@ -88,10 +112,6 @@ const services: Service[] = [
                       </span>
                     )}
                   </div>
-                  {/* Always-visible blurb on mobile/touch where hover is unreliable */}
-                  <p class="text-pretty pt-1 leading-relaxed text-ink-muted md:hidden">
-                    {s.blurb}
-                  </p>
                 </div>
               </Tag>
             </li>
