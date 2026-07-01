@@ -18,7 +18,7 @@ import AuditForm from './AuditForm.astro';
 
     <h2 class="display text-[clamp(2.6rem,9vw,9rem)]">
       <span class="line-mask"><span>Let's build</span></span>
-      <span class="line-mask"><span>something that <span class="text-accent">grows.</span></span></span>
+      <span class="line-mask"><span>something that <span class="text-accent grow-word">grows.</span></span></span>
     </h2>
 
     <div class="mt-12 grid gap-10 border-t border-line pt-10 lg:grid-cols-12">
@@ -55,4 +55,24 @@ import AuditForm from './AuditForm.astro';
       </div>
     </div>
   </div>
+
+  <style>
+    /* "grows." literally grows into place, once, when the line reveals. */
+    .grow-word {
+      display: inline-block;
+      transform: scale(0.5);
+      transform-origin: left bottom;
+      transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0.5s;
+    }
+    .line-mask.is-in .grow-word {
+      transform: scale(1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .grow-word {
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </section>
