@@ -23,30 +23,11 @@
     </h1>
 
     <div class="mt-10 grid items-end gap-8 md:mt-14 md:grid-cols-12">
-      <div class="reveal relative col-span-12 max-w-xl md:col-span-6" style="--reveal-delay:120ms">
-        <!-- Self-drawing Pike's Peak ridgeline behind the copy -->
-        <svg
-          class="hero-range pointer-events-none absolute left-1/2 top-1/2 w-[118%] -translate-x-1/2 -translate-y-1/2 overflow-visible"
-          viewBox="0 0 640 180"
-          fill="none"
-          preserveAspectRatio="xMidYMid meet"
-          aria-hidden="true"
-        >
-          <path
-            pathLength="1"
-            d="M6 150 L70 120 L104 132 L150 104 L188 120 L236 86 L268 100 L312 46 L332 60 L360 44 L392 92 L426 74 L462 104 L500 80 L536 108 L574 92 L614 120 L634 150"
-            stroke="rgb(var(--lime))"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <p class="relative z-10 text-pretty text-lg leading-relaxed text-ink-muted md:text-xl">
-          We engineer high-performance websites, ship practical AI, and build
-          marketing systems that compound, for ambitious brands far beyond the
-          Front Range.
-        </p>
-      </div>
+      <p class="reveal col-span-12 max-w-xl text-pretty text-lg leading-relaxed text-ink-muted md:col-span-6 md:text-xl" style="--reveal-delay:120ms">
+        We engineer high-performance websites, ship practical AI, and build
+        marketing systems that compound, for ambitious brands far beyond the
+        Front Range.
+      </p>
 
       <div class="reveal col-span-12 flex flex-wrap items-center gap-4 md:col-span-6 md:justify-end" style="--reveal-delay:220ms">
         <a href="#contact" class="btn btn-primary">
@@ -64,29 +45,3 @@
     <span class="block h-10 w-px bg-gradient-to-b from-ink-faint to-transparent"></span>
   </div>
 </section>
-
-<style>
-  /* Pike's Peak ridgeline: perpetually draws itself, then erases and repeats.
-     pathLength="1" normalizes the path so the dash math is resolution-free. */
-  .hero-range path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    opacity: 0.3;
-    animation: rangeDraw 8s ease-in-out infinite;
-  }
-  @keyframes rangeDraw {
-    0% { stroke-dashoffset: 1; opacity: 0.16; }
-    8% { opacity: 0.34; }
-    45% { stroke-dashoffset: 0; opacity: 0.34; }
-    68% { stroke-dashoffset: 0; opacity: 0.34; }
-    92% { opacity: 0.14; }
-    100% { stroke-dashoffset: -1; opacity: 0.14; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-range path {
-      animation: none;
-      stroke-dashoffset: 0;
-      opacity: 0.24;
-    }
-  }
-</style>
