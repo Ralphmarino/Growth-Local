@@ -1,21 +1,31 @@
 ---
-import { ralph } from '../data/author';
+import { ralph, type Member } from '../data/author';
 
 interface Props {
+  person?: Member;
   size?: number;
   class?: string;
 }
-const { size = 96, class: cls = '' } = Astro.props;
+const { person = ralph, size = 96, class: cls = '' } = Astro.props;
 ---
 
 <span
   class:list={['avatar-swap', cls]}
   style={`--sz:${size}px`}
-  aria-label={ralph.name}
+  aria-label={person.name}
   role="img"
 >
-  <img class="av av-memoji" src={ralph.memoji} alt="" width={size} height={size} loading="lazy" decoding="async" />
-  <img class="av av-photo" src={ralph.photo} alt="" width={size} height={size} loading="lazy" decoding="async" />
+  <img class="av av-memoji" src={person.memoji} alt="" width={size} height={size} loading="lazy" decoding="async" />
+  <img
+    class="av av-photo"
+    src={person.photo}
+    alt=""
+    width={size}
+    height={size}
+    loading="lazy"
+    decoding="async"
+    style={`object-position:${person.photoPosition ?? 'center'}`}
+  />
 </span>
 
 <style>

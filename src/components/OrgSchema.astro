@@ -2,7 +2,7 @@
 // Organization structured data (JSON-LD) for the homepage. Helps Google/AI
 // search build a knowledge entity for Growth Local (name, logo, contact,
 // founder, socials). Rendered into <head> via the Base "head" slot.
-import { ralph } from '../data/author';
+import { ralph, team } from '../data/author';
 
 const site = (Astro.site ?? new URL('https://growthlocal.com')).toString().replace(/\/$/, '');
 
@@ -63,6 +63,13 @@ const organization = {
     'https://www.instagram.com/growthlocal/',
     'https://www.facebook.com/growthlocal',
   ],
+  employee: team.map((m) => ({
+    '@type': 'Person',
+    name: m.name,
+    jobTitle: m.role,
+    url: `${site}/team`,
+    sameAs: [m.linkedin],
+  })),
 };
 
 // Note: no SearchAction/sitelinks-searchbox — the site has no on-site search

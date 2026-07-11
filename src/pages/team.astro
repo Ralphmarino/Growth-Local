@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import AuthorAvatar from '../components/AuthorAvatar.astro';
+import { team } from '../data/author';
+---
+
+<Base
+  title="Our Team · Growth Local"
+  description="Meet the people behind Growth Local, a veteran-owned Colorado Springs digital studio. Technical SEO, web development, AI, and digital marketing, done in-house."
+>
+  <Nav />
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative overflow-hidden pb-[clamp(2.5rem,6vw,4.5rem)] pt-36 md:pt-44">
+      <div
+        class="pointer-events-none absolute -right-[6%] top-[6%] -z-0 h-[44vw] w-[44vw] rounded-full opacity-[0.13] blur-[120px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10">
+        <p class="eyebrow reveal mb-8">
+          <span class="text-accent">[*]</span> &nbsp;Our Team
+        </p>
+        <h1 class="display text-[clamp(2.6rem,8vw,7rem)]">
+          <span class="line-mask"><span>The people behind</span></span>
+          <span class="line-mask"><span>the <span class="text-accent">work.</span></span></span>
+        </h1>
+        <p class="reveal mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted md:text-xl" style="--reveal-delay:120ms">
+          Growth Local is small on purpose. You work directly with the people
+          doing the work. No account managers, no outsourcing, no hand-offs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Members -->
+    {
+      team.map((m) => (
+        <section class="border-t border-line py-[clamp(3rem,7vw,6rem)]">
+          <div class="container-wide grid gap-10 md:grid-cols-12">
+            <!-- Left: avatar + identity (sticky on desktop) -->
+            <div class="md:col-span-4">
+              <div class="md:sticky md:top-28">
+                <div class="reveal inline-flex flex-col items-start gap-3">
+                  <AuthorAvatar person={m} size={140} />
+                  <span class="av-hint font-mono text-[0.66rem] uppercase tracking-[0.18em] text-ink-faint">
+                    ✶ <span class="av-hint-hover">hover me</span><span class="av-hint-touch">that's me</span>
+                  </span>
+                </div>
+                <h2 class="reveal mt-6 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-none tracking-tightest">
+                  {m.name}
+                </h2>
+                <p class="reveal mt-3 max-w-xs text-pretty font-mono text-[0.74rem] uppercase leading-relaxed tracking-[0.12em] text-accent">
+                  {m.role}
+                </p>
+                <div class="reveal mt-6 flex flex-wrap items-center gap-3">
+                  <a href={m.linkedin} target="_blank" rel="noopener" class="btn btn-primary !px-5 !py-2.5 !text-[0.72rem]">
+                    LinkedIn
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                  {m.slug === 'ralph' && (
+                    <a href={`/blog/author/${m.slug}`} class="btn btn-ghost !px-5 !py-2.5 !text-[0.72rem]">
+                      Read articles
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: bio + facts -->
+            <div class="md:col-span-8 max-w-3xl">
+              {m.bio.map((para, i) => (
+                <p
+                  class="reveal text-pretty leading-relaxed text-ink-muted [&:not(:first-child)]:mt-5"
+                  style={`--reveal-delay:${i * 60}ms`}
+                >
+                  {para}
+                </p>
+              ))}
+
+              <div class="reveal mt-10">
+                <p class="eyebrow mb-6 flex items-center gap-3">
+                  <span class="inline-block h-px w-8 bg-lime" />
+                  Off the clock
+                </p>
+                <dl class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+                  {m.facts.map((f, i) => (
+                    <div
+                      class="reveal group flex items-start gap-4 bg-base-900 p-5 transition-colors duration-300 hover:bg-base-800/70"
+                      style={`--reveal-delay:${(i % 2) * 60}ms`}
+                    >
+                      <span
+                        class="mt-0.5 text-xl leading-none transition-transform duration-300 group-hover:scale-125"
+                        aria-hidden="true"
+                      >
+                        {f.icon}
+                      </span>
+                      <div>
+                        <dt class="font-mono text-[0.66rem] uppercase tracking-wider text-ink-faint">{f.label}</dt>
+                        <dd class="mt-1 text-pretty leading-snug text-ink transition-colors group-hover:text-accent">{f.value}</dd>
+                      </div>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <!-- CTA -->
+    <section class="border-t border-line py-[clamp(3.5rem,8vw,7rem)]">
+      <div class="container-wide max-w-3xl">
+        <h2 class="display text-[clamp(1.8rem,5vw,3.6rem)]">
+          Want this team on your side?
+        </h2>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/#contact" class="btn btn-primary">Start a project</a>
+          <a href="/services/seo" class="btn btn-ghost">Explore SEO services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  /* Avatar hint adapts: "hover me" on pointers, "that's me" on touch */
+  .av-hint-touch { display: none; }
+  @media (hover: none) {
+    .av-hint-hover { display: none; }
+    .av-hint-touch { display: inline; }
+  }
+</style>
