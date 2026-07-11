@@ -107,6 +107,7 @@ import { team } from '../data/author';
                       <div>
                         <dt class="font-mono text-[0.66rem] uppercase tracking-wider text-ink-faint">{f.label}</dt>
                         <dd class="mt-1 text-pretty leading-snug text-ink transition-colors group-hover:text-accent">{f.value}</dd>
+                        {f.note && <dd class="mt-0.5 text-[0.78rem] italic text-accent/70">({f.note})</dd>}
                       </div>
                     </div>
                   ))}
