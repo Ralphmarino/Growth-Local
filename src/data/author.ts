@@ -12,7 +12,7 @@ export interface Member {
   photoPosition?: string;
   bioShort: string;
   bio: string[];
-  facts: { icon: string; label: string; value: string }[];
+  facts: { icon: string; label: string; value: string; note?: string }[];
 }
 
 export const ralph: Member = {
@@ -39,7 +39,7 @@ export const ralph: Member = {
   facts: [
     { icon: '🎖️', label: 'Service', value: 'US Army Veteran' },
     { icon: '🗽', label: 'Born & Raised', value: 'Staten Island, NY' },
-    { icon: '🎂', label: 'Birthday', value: 'May 28 · Gemini ♊' },
+    { icon: '🎂', label: 'Birthday', value: 'May 28 · Gemini ♊', note: "Yes, same as John's" },
     { icon: '🐱', label: 'Family', value: 'Married + 4 cats' },
     { icon: '🤖', label: 'Obsession', value: 'Claude + Claude Code' },
     { icon: '🥊', label: 'Fanatic', value: 'UFC / MMA' },
@@ -77,7 +77,7 @@ export const john: Member = {
   facts: [
     { icon: '🍼', label: 'Born', value: 'Concord, New Hampshire' },
     { icon: '🌽', label: 'Raised', value: 'Des Moines, Iowa' },
-    { icon: '🎂', label: 'Birthday', value: 'May 28 · Gemini ♊' },
+    { icon: '🎂', label: 'Birthday', value: 'May 28 · Gemini ♊', note: "Yes, same as Ralph's" },
     { icon: '🐕', label: 'Family', value: 'Two dogs' },
     { icon: '📧', label: 'Obsession', value: 'Replying to emails fast' },
     { icon: '🏈', label: 'Fanatic', value: 'Football' },
