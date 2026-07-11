@@ -5,6 +5,7 @@ export interface Member {
   role: string;
   tagline: string;
   linkedin: string;
+  email: string;
   memoji: string;
   photo: string;
   /** object-position for the real photo inside the circular avatar */
@@ -21,6 +22,7 @@ export const ralph: Member = {
   // Short line used on compact cards
   tagline: 'Founder & operator of Growth Local',
   linkedin: 'https://www.linkedin.com/in/ralphmarino/',
+  email: 'ralph@growthlocal.com',
   // Avatars live in /public/team. The memoji shows by default and crossfades
   // to the real photo on hover (see AuthorAvatar.astro).
   memoji: '/team/ralph-memoji-true.png',
@@ -60,6 +62,7 @@ export const john: Member = {
   role: 'Digital Growth Strategist · Technical SEO & Web Operations',
   tagline: 'Digital growth strategist at Growth Local',
   linkedin: 'https://www.linkedin.com/in/john-kennedy-seo/',
+  email: 'john@growthlocal.com',
   memoji: '/team/john-kennedy-memoji.png',
   photo: '/team/john-kennedy.jpeg',
   photoPosition: 'center 18%',
