@@ -39,6 +39,7 @@ Contact: contact@growthlocal.com · 678-631-6518 · Colorado Springs, CO (servin
 ## Key pages
 - [Home](${base}/): Overview of services, work, process, and the studio.
 - [SEO Services](${base}/services/seo): The seven SEO disciplines, process, and results.
+- [Our Team](${base}/team): The people behind Growth Local — bios for Ralph Marino and John C. Kennedy.
 - [About Ralph Marino](${base}/blog/author/${ralph.slug}): Founder bio and articles.
 - [Blog](${base}/blog): Articles on SEO, AI search, performance, and growth.
 - [Contact](${base}/#contact): Start a project or request a free SEO audit.
