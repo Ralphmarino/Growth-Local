@@ -11,6 +11,9 @@ const blog = defineCollection({
     author: z.string().default('Growth Local'),
     readingTime: z.string().optional(),
     draft: z.boolean().default(false),
+    // Optional Q&A pairs → FAQPage structured data (see BlogFaqSchema.astro).
+    // The visible FAQ still lives in the post body; this powers the schema.
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
   }),
 });
 
