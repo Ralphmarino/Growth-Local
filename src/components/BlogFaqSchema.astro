@@ -1,0 +1,25 @@
+---
+// FAQPage structured data for blog posts that declare a `faq` array in their
+// frontmatter. Rendered into <head> via the Base "head" slot, alongside the
+// post's BlogPosting schema (ArticleSchema.astro). The visible FAQ still lives
+// in the post body; this only mirrors it for search / AI answer engines.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+const faqs = post.data.faq ?? [];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+{faqs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
