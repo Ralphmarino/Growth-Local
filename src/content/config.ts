@@ -4,6 +4,10 @@ const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    // Optional override for the <title> tag / OG title. When set, it is used
+    // verbatim (no "· Growth Local" suffix) — handy for keeping SEO titles
+    // under ~60 chars. Falls back to `${title} · Growth Local`.
+    titleTag: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
     category: z.string().default('Insights'),

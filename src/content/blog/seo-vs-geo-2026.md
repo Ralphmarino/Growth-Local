@@ -1,5 +1,6 @@
 ---
 title: "SEO vs GEO in 2026: What Small Businesses Need to Know"
+titleTag: "SEO vs GEO in 2026: What Small Businesses Need to Know"
 description: "SEO gets you ranked. GEO gets you cited by ChatGPT, Gemini, and AI Overviews. Learn how SEO and GEO work together in 2026, plus best practices and FAQs."
 pubDate: 2026-07-14
 category: "SEO"
