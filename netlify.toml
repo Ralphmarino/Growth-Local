@@ -12,3 +12,17 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# 301 the interim SEO URL to the canonical /services/search-engine-optimization/
+# (the URL that carries the historical equity/backlinks). Preserves link value.
+[[redirects]]
+  from = "/services/seo"
+  to = "/services/search-engine-optimization/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/seo/"
+  to = "/services/search-engine-optimization/"
+  status = 301
+  force = true
