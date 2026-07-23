@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { ralph } from '../data/author';
+import { disciplines } from '../data/seo-disciplines';
 
 // Generates /llms.txt — a curated, LLM-friendly map of the site
 // (https://llmstxt.org). Built from the blog content collection so it stays
@@ -33,12 +34,17 @@ Contact: contact@growthlocal.com · 678-631-6518 · Colorado Springs, CO (servin
 ## Services
 - [Web Development](${base}/#services): Fast, accessible websites and web apps built on Next.js/Astro, with strong Core Web Vitals.
 - [AI Consulting](${base}/#services): Practical automations, assistants, and data workflows teams actually use.
-- [SEO](${base}/services/search-engine-optimization): Full-funnel program: SEO audit, technical, on-page, off-page, CRO, analytics & reporting, and GEO/AEO (Generative/Answer Engine Optimization).
+- [SEO](${base}/services/search-engine-optimization): Full-funnel program across eight disciplines (below).
 - [Digital Marketing](${base}/#services): Paid media, social, email, and analytics working as one growth system.
+
+## SEO disciplines
+${disciplines
+  .map((d) => `- [${d.title}](${base}/services/search-engine-optimization/${d.slug}): ${clean(d.desc)}`)
+  .join('\n')}
 
 ## Key pages
 - [Home](${base}/): Overview of services, work, process, and the studio.
-- [SEO Services](${base}/services/search-engine-optimization): The seven SEO disciplines, process, and results.
+- [SEO Services](${base}/services/search-engine-optimization): The eight SEO disciplines, process, and results.
 - [Our Team](${base}/team): The people behind Growth Local — bios for Ralph Marino and John C. Kennedy.
 - [About Ralph Marino](${base}/blog/author/${ralph.slug}): Founder bio and articles.
 - [Blog](${base}/blog): Articles on SEO, AI search, performance, and growth.

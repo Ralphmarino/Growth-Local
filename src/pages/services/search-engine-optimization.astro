@@ -2,58 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { disciplines, disciplineIcons as icons } from '../../data/seo-disciplines';
 
-const services = [
-  {
-    no: '01',
-    title: 'SEO Audit',
-    desc: 'A forensic baseline. We crawl, benchmark, and pressure-test your site against competitors to find exactly what is holding rankings back, and what to fix first.',
-    chips: ['Tech crawl', 'Competitor gap', 'Priority roadmap'],
-    icon: 'audit',
-  },
-  {
-    no: '02',
-    title: 'Technical SEO',
-    desc: 'The foundation everything else stands on. Crawlability, indexation, site speed, Core Web Vitals, structured data, and a clean, logical architecture.',
-    chips: ['Core Web Vitals', 'Schema', 'Indexation'],
-    icon: 'technical',
-  },
-  {
-    no: '03',
-    title: 'On-Page SEO',
-    desc: 'Content and structure engineered to rank and convert. Keyword targeting, intent mapping, metadata, internal linking, and pages built around what searchers actually want.',
-    chips: ['Intent mapping', 'Content', 'Internal links'],
-    icon: 'onpage',
-  },
-  {
-    no: '04',
-    title: 'Off-Page SEO',
-    desc: 'Authority you earn. Digital PR, strategic link acquisition, and brand signals that tell search engines you are the credible answer in your space.',
-    chips: ['Digital PR', 'Link earning', 'Authority'],
-    icon: 'offpage',
-  },
-  {
-    no: '05',
-    title: 'CRO',
-    desc: 'Traffic only matters if it converts. We test, refine, and rebuild the journey from landing to lead, turning the visitors SEO earns into pipeline.',
-    chips: ['A/B testing', 'UX', 'Landing pages'],
-    icon: 'cro',
-  },
-  {
-    no: '06',
-    title: 'Analytics & Reporting',
-    desc: 'Total clarity on what is working. GA4, Search Console, and rank tracking distilled into transparent dashboards tied to revenue. No vanity metrics.',
-    chips: ['GA4', 'Attribution', 'Live dashboards'],
-    icon: 'analytics',
-  },
-  {
-    no: '07',
-    title: 'GEO / AEO',
-    desc: 'Search is moving to AI. Generative & Answer Engine Optimization positions you to be cited by ChatGPT, Perplexity, and Google AI Overviews, the next front of discovery.',
-    chips: ['AI Overviews', 'LLM citations', 'Entity SEO'],
-    icon: 'geo',
-  },
-];
+const base = '/services/search-engine-optimization';
 
 const steps = [
   { no: '01', title: 'Audit & baseline', body: 'We measure where you stand and agree on the metrics that define winning.' },
@@ -69,21 +20,11 @@ const stats = [
   { value: '90', suffix: '+', label: 'Avg. Core Web Vitals score' },
 ];
 
-// Minimal, consistent 1.5px stroke icons (Lucide/Phosphor style)
-const icons: Record<string, string> = {
-  audit: '<circle cx="6" cy="6" r="3.2"/><path d="M8.4 8.4 13 13"/><path d="M5 6h2M6 5v2"/>',
-  technical: '<path d="M6 3.5 2.5 7 6 10.5M10 3.5 13.5 7 10 10.5"/>',
-  onpage: '<rect x="3" y="2.5" width="9" height="11" rx="1.2"/><path d="M5.2 5.5h4.6M5.2 7.6h4.6M5.2 9.7h2.8"/>',
-  offpage: '<path d="M6.2 8.8a2.4 2.4 0 0 1 0-3.4l1.6-1.6a2.4 2.4 0 0 1 3.4 3.4l-.8.8"/><path d="M8.8 6.2a2.4 2.4 0 0 1 0 3.4l-1.6 1.6a2.4 2.4 0 0 1-3.4-3.4l.8-.8"/>',
-  cro: '<path d="M2.5 12h11"/><path d="M4 12V8.5M7 12V5.5M10 12V7.5M13 12V3.5"/>',
-  analytics: '<path d="M2.5 2.5v11h11"/><path d="m4.5 10 2.5-3 2.5 2 3-4.5"/>',
-  geo: '<path d="M8 2.2 9.2 6l3.8 1.2L9.2 8.4 8 12.2 6.8 8.4 3 7.2 6.8 6 8 2.2Z"/>',
-};
 ---
 
 <Base
-  title="SEO Services: Audit, Technical, On/Off-Page, CRO, GEO/AEO · Growth Local"
-  description="Full-funnel SEO from Growth Local: SEO audits, technical, on-page, off-page, CRO, analytics & reporting, and AI search optimization (GEO/AEO). Colorado Springs, serving brands nationwide."
+  title="SEO Services: Audit, Technical, On/Off-Page, National, CRO, GEO/AEO · Growth Local"
+  description="Full-funnel SEO from Growth Local: SEO audits, technical, on-page, off-page, national SEO, CRO, analytics & reporting, and AI search optimization (GEO/AEO). Colorado Springs, serving brands nationwide."
 >
   <Nav />
   <main id="main">
@@ -128,7 +69,7 @@ const icons: Record<string, string> = {
       <div class="container-wide">
         <div class="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
           <h2 class="display text-[clamp(2rem,6vw,5rem)]">
-            <span class="line-mask"><span>Seven disciplines,</span></span>
+            <span class="line-mask"><span>Eight disciplines,</span></span>
             <span class="line-mask"><span>one compounding system.</span></span>
           </h2>
           <p class="eyebrow reveal mb-3">What's included</p>
@@ -136,8 +77,9 @@ const icons: Record<string, string> = {
 
         <div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {
-            services.map((s, i) => (
-              <article
+            disciplines.map((s, i) => (
+              <a
+                href={`${base}/${s.slug}`}
                 class="reveal group relative flex flex-col bg-base-900 p-7 transition-colors duration-500 hover:bg-base-800 md:p-9"
                 style={`--reveal-delay:${(i % 3) * 80}ms`}
               >
@@ -147,7 +89,10 @@ const icons: Record<string, string> = {
                   </span>
                   <span class="font-mono text-sm text-ink-faint">{s.no}</span>
                 </div>
-                <h3 class="display mt-7 text-3xl text-ink md:text-[2.1rem]">{s.title}</h3>
+                <h3 class="display mt-7 flex items-center gap-2 text-3xl text-ink transition-colors duration-300 group-hover:text-accent md:text-[2.1rem]">
+                  {s.title}
+                  <svg class="h-4 w-4 shrink-0 -translate-x-2 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </h3>
                 <p class="mt-4 flex-1 text-pretty leading-relaxed text-ink-muted">{s.desc}</p>
                 <div class="mt-6 flex flex-wrap gap-2">
                   {s.chips.map((c) => (
@@ -156,13 +101,13 @@ const icons: Record<string, string> = {
                     </span>
                   ))}
                 </div>
-              </article>
+              </a>
             ))
           }
-          <!-- CTA card fills the 8th cell so the grid reads intentionally -->
+          <!-- CTA fills the 9th cell so the 3-column grid reads intentionally -->
           <a
             href="/#contact"
-            class="reveal group flex flex-col justify-between bg-lime p-7 text-base-900 transition-colors duration-500 hover:bg-lime-400 md:p-9 lg:col-span-2"
+            class="reveal group flex flex-col justify-between bg-lime p-7 text-base-900 transition-colors duration-500 hover:bg-lime-400 md:p-9"
           >
             <span class="font-mono text-sm">→</span>
             <div>
