@@ -91,3 +91,5 @@ Google's SGE is currently only available in the US (English).
 **So, does this mean keyword stuffing is totally out?**
 
 Ralph Marino, our SEO expert, would say: "It's about genuine content for the user." Keyword stuffing hasn't worked for a while now & definitely won't fly in this AI-driven world. Focus on genuine, user-centric content!
+
+**Want the full playbook?** Read our step-by-step guide on [how to get your business shown in AI search](/blog/get-your-business-shown-in-ai-search) — covering GEO, AI Overviews, and getting cited by ChatGPT, Gemini, and Perplexity.
