@@ -1,0 +1,176 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { disciplines, disciplineIcons as icons } from '../../../data/seo-disciplines';
+
+export function getStaticPaths() {
+  return disciplines.map((d) => ({ params: { discipline: d.slug }, props: { d } }));
+}
+
+const { d } = Astro.props;
+const base = '/services/search-engine-optimization';
+const site = (Astro.site ?? new URL('https://growthlocal.com')).toString().replace(/\/$/, '');
+const url = `${site}${base}/${d.slug}`;
+const others = disciplines.filter((x) => x.slug !== d.slug);
+const h1 = d.pageTitle ?? d.title;
+
+// BreadcrumbList + Service structured data
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+        { '@type': 'ListItem', position: 2, name: 'SEO Services', item: `${site}${base}/` },
+        { '@type': 'ListItem', position: 3, name: d.title, item: url },
+      ],
+    },
+    {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: h1,
+      serviceType: d.title,
+      description: d.meta.description,
+      url,
+      provider: { '@id': `${site}/#organization` },
+      areaServed: { '@type': 'Country', name: 'United States' },
+      category: 'Search Engine Optimization',
+    },
+  ],
+};
+---
+
+<Base title={d.meta.title} description={d.meta.description}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
+  <Nav />
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative overflow-hidden pb-[clamp(2.5rem,6vw,4.5rem)] pt-36 md:pt-44">
+      <div
+        class="pointer-events-none absolute -right-[8%] top-0 -z-0 h-[46vw] w-[46vw] rounded-full opacity-[0.13] blur-[120px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10">
+        <nav class="eyebrow reveal mb-8 flex flex-wrap items-center gap-3" aria-label="Breadcrumb">
+          <a href="/#services" class="transition-colors hover:text-accent">Services</a>
+          <span class="text-ink-faint">/</span>
+          <a href={`${base}/`} class="transition-colors hover:text-accent">SEO</a>
+          <span class="text-ink-faint">/</span>
+          <span class="text-accent">{d.title}</span>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-line text-accent">
+            <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[d.icon]} />
+          </span>
+          <span class="font-mono text-sm text-ink-faint">{d.no} / 08</span>
+        </div>
+
+        <h1 class="display mt-8 text-[clamp(2.4rem,7.5vw,6.5rem)]">
+          <span class="line-mask"><span>{h1}</span></span>
+        </h1>
+        <p class="reveal mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted md:text-xl" style="--reveal-delay:120ms">
+          {d.lede}
+        </p>
+        <div class="reveal mt-9 flex flex-wrap gap-4" style="--reveal-delay:200ms">
+          <a href="/#contact" class="btn btn-primary">
+            {d.slug === 'national-seo' ? 'Get a free quote' : 'Get an SEO audit'}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href={`${base}/`} class="btn btn-ghost">All SEO services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Body -->
+    <section class="border-t border-line py-[clamp(3rem,7vw,6rem)]">
+      <div class="container-wide grid gap-12 md:grid-cols-12">
+        <div class="md:col-span-7">
+          {d.intro.map((para, i) => (
+            <p
+              class="reveal text-pretty text-lg leading-relaxed text-ink-muted [&:not(:first-child)]:mt-6"
+              style={`--reveal-delay:${i * 70}ms`}
+            >
+              {para}
+            </p>
+          ))}
+        </div>
+
+        <!-- What's included -->
+        <div class="md:col-span-5">
+          <div class="reveal rounded-2xl border border-line bg-base-900/50 p-7 md:p-8">
+            <p class="eyebrow mb-6 flex items-center gap-3">
+              <span class="inline-block h-px w-8 bg-lime"></span>
+              What's included
+            </p>
+            <ul class="space-y-4">
+              {d.includes.map((item) => (
+                <li class="flex items-start gap-3">
+                  <svg class="mt-1 shrink-0 text-accent" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="text-pretty leading-snug text-ink">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rest of the program -->
+    <section class="border-t border-line py-[clamp(3rem,7vw,6rem)]">
+      <div class="container-wide">
+        <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <h2 class="display text-[clamp(1.8rem,4.5vw,3.4rem)]">
+            <span class="line-mask"><span>The rest of the program</span></span>
+          </h2>
+          <a href={`${base}/`} class="eyebrow reveal mb-2 transition-colors hover:text-accent">All eight disciplines →</a>
+        </div>
+        <div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {others.map((o, i) => (
+            <a
+              href={`${base}/${o.slug}`}
+              class="reveal group flex items-start gap-4 bg-base-900 p-6 transition-colors duration-300 hover:bg-base-800"
+              style={`--reveal-delay:${(i % 3) * 60}ms`}
+            >
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line text-accent transition-colors duration-300 group-hover:border-lime/50">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[o.icon]} />
+              </span>
+              <div>
+                <h3 class="font-display text-lg font-semibold tracking-tightest transition-colors duration-300 group-hover:text-accent">{o.title}</h3>
+                <p class="mt-1 text-sm leading-snug text-ink-muted">{o.lede}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden border-t border-line py-[clamp(4rem,10vw,8rem)]">
+      <div
+        class="pointer-events-none absolute -bottom-[20%] left-1/2 -z-0 h-[55vw] w-[55vw] -translate-x-1/2 rounded-full opacity-[0.13] blur-[130px]"
+        style="background: radial-gradient(circle, #C7F94E 0%, transparent 62%);"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="container-wide relative z-10 text-center">
+        <h2 class="display mx-auto max-w-3xl text-[clamp(2rem,6vw,5rem)]">
+          <span class="line-mask"><span>Ready to rank for</span></span>
+          <span class="line-mask"><span>what <span class="text-accent">matters?</span></span></span>
+        </h2>
+        <p class="reveal mx-auto mt-8 max-w-xl text-lg leading-relaxed text-ink-muted">
+          Start with a free audit. We'll show you exactly where {d.title.toLowerCase()} fits, and the fastest credible path to growth.
+        </p>
+        <div class="reveal mt-10 flex flex-wrap justify-center gap-4" style="--reveal-delay:120ms">
+          <a href="/#contact" class="btn btn-primary">{d.slug === 'national-seo' ? 'Get a free quote' : 'Get an SEO audit'}</a>
+          <a href="/#contact" class="btn btn-ghost">Call or text us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

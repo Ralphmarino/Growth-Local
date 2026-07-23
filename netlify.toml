@@ -26,3 +26,58 @@
   to = "/services/search-engine-optimization/"
   status = 301
   force = true
+
+# Legacy WordPress URLs → their new homes (preserve equity from indexed pages)
+[[redirects]]
+  from = "/national-seo/"
+  to = "/services/search-engine-optimization/national-seo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/national-seo"
+  to = "/services/search-engine-optimization/national-seo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact/"
+  to = "/#contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/web-development/"
+  to = "/#services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/web-development"
+  to = "/#services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/"
+  to = "/#services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about-growth-local/"
+  to = "/team/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about-growth-local"
+  to = "/team/"
+  status = 301
+  force = true
