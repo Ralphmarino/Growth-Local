@@ -5,6 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import AuthorCardCompact from '../../components/AuthorCardCompact.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
+import BlogFaqSchema from '../../components/BlogFaqSchema.astro';
 import { ralph } from '../../data/author';
 
 export async function getStaticPaths() {
@@ -21,10 +22,24 @@ const { Content } = await post.render();
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const updated = post.data.updatedDate ?? post.data.pubDate;
+const showUpdated =
+  post.data.updatedDate && post.data.updatedDate.valueOf() !== post.data.pubDate.valueOf();
 ---
 
-<Base title={`${post.data.title} · Growth Local`} description={post.data.description}>
+<Base
+  title={post.data.titleTag ?? `${post.data.title} · Growth Local`}
+  description={post.data.description}
+  ogType="article"
+  ogTitle={post.data.ogTitle ?? post.data.title}
+  ogDescription={post.data.ogDescription ?? post.data.description}
+  ogImage={post.data.heroImage}
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={updated.toISOString()}
+>
   <ArticleSchema post={post} slot="head" />
+  <BlogFaqSchema post={post} slot="head" />
   <Nav />
   <main id="main">
     <article class="pt-36 md:pt-44">
@@ -33,15 +48,18 @@ const fmt = (d: Date) =>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All posts
         </a>
-        <div class="reveal mb-6 flex flex-wrap items-center gap-4">
+        <div class="reveal mb-6 flex flex-wrap items-center gap-x-4 gap-y-2">
           <span class="font-mono text-[0.72rem] uppercase tracking-wider text-accent">{post.data.category}</span>
-          <span class="font-mono text-[0.72rem] text-ink-faint">{fmt(post.data.pubDate)}</span>
+          <a href={`/blog/author/${ralph.slug}`} class="font-mono text-[0.72rem] uppercase tracking-wider text-ink-faint transition-colors hover:text-accent">
+            By {ralph.name}
+          </a>
+          <span class="font-mono text-[0.72rem] text-ink-faint">· <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time></span>
+          {showUpdated && (
+            <span class="font-mono text-[0.72rem] text-ink-faint">· Updated <time datetime={updated.toISOString()}>{fmt(updated)}</time></span>
+          )}
           {post.data.readingTime && (
             <span class="font-mono text-[0.72rem] text-ink-faint">· {post.data.readingTime}</span>
           )}
-          <a href={`/blog/author/${ralph.slug}`} class="font-mono text-[0.72rem] uppercase tracking-wider text-ink-faint transition-colors hover:text-accent">
-            · By {ralph.name}
-          </a>
         </div>
         <h1 class="display text-balance text-[clamp(2.2rem,6vw,5rem)]">{post.data.title}</h1>
         <p class="reveal mt-7 max-w-2xl text-pretty text-xl leading-relaxed text-ink-muted">
