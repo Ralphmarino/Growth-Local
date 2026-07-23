@@ -29,7 +29,7 @@ faq:
   - q: "Will blocking AI crawlers protect my content?"
     a: "It will mostly just remove you from the answers. If GPTBot or PerplexityBot cannot read your site, those engines cannot cite you, and your competitors who allow crawling become the sources instead. For most businesses, visibility is worth far more than exclusion."
 ---
-*Quick answer: To get your business shown in AI tools like ChatGPT, Gemini, Perplexity, and Google AI Overviews, you need to (1) make sure AI crawlers can access your site, (2) publish structured, fact-dense content that answers real questions, (3) strengthen your entity and brand signals across the web, (4) implement layered schema markup, and (5) keep content fresh and verifiable. This discipline is called Generative Engine Optimization (GEO), and it builds on, rather than replaces, [traditional SEO](/services/seo).*
+*Quick answer: To get your business shown in AI tools like ChatGPT, Gemini, Perplexity, and Google AI Overviews, you need to (1) make sure AI crawlers can access your site, (2) publish structured, fact-dense content that answers real questions, (3) strengthen your entity and brand signals across the web, (4) implement layered schema markup, and (5) keep content fresh and verifiable. This discipline is called Generative Engine Optimization (GEO), and it builds on, rather than replaces, [traditional SEO](/services/search-engine-optimization).*
 
 Your customers are not just Googling anymore. They are asking ChatGPT which contractor to hire, asking Perplexity which software to buy, and reading AI Overviews before they ever click a blue link. If your business does not show up in those AI-generated answers, you are invisible at the exact moment a buying decision gets made.
 
@@ -102,7 +102,7 @@ AI search is not a future trend to monitor. It is where a growing share of buyin
 
 ## Want Your Business Showing Up in AI Answers?
 
-At Growth Local, we build AI visibility into everything we do. [Our team](/team) combines traditional SEO with hands-on GEO: technical audits that verify AI crawlers can reach your site, content engineered for citation, layered schema implementation, entity and review strategy, and monthly AI visibility tracking so you can see exactly where you appear across ChatGPT, Gemini, Perplexity, and Google AI Overviews. It is all part of our [SEO and GEO services](/services/seo).
+At Growth Local, we build AI visibility into everything we do. [Our team](/team) combines traditional SEO with hands-on GEO: technical audits that verify AI crawlers can reach your site, content engineered for citation, layered schema implementation, entity and review strategy, and monthly AI visibility tracking so you can see exactly where you appear across ChatGPT, Gemini, Perplexity, and Google AI Overviews. It is all part of our [SEO and GEO services](/services/search-engine-optimization).
 
 We have spent years earning rankings for local and national businesses. Now we make sure those same businesses get recommended when the search box is a chat box.
 

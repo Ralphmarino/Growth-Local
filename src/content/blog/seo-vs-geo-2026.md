@@ -75,7 +75,7 @@ The customer journey is no longer linear. A buyer might discover a category in C
 
 **Strengthen E-E-A-T on every page.** Real author bylines, credentials, first-hand experience, cited sources, and updated dates. [Google's quality guidelines](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and AI citation behavior both reward demonstrated expertise.
 
-**Do not neglect local SEO.** For service businesses, Google Business Profile optimization, reviews, and consistent NAP data still drive the map pack, and AI assistants pull heavily from those same local signals when recommending nearby businesses — the core of our [local SEO services](/services/seo).
+**Do not neglect local SEO.** For service businesses, Google Business Profile optimization, reviews, and consistent NAP data still drive the map pack, and AI assistants pull heavily from those same local signals when recommending nearby businesses — the core of our [local SEO services](/services/search-engine-optimization).
 
 ## GEO Best Practices for 2026
 
