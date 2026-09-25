@@ -8,7 +8,29 @@ tags:
 author: "Ralph Marino"
 readingTime: "6 min read"
 draft: false
+faq:
+  - q: "What's this Google SGE I keep hearing about?"
+    a: "Google SGE, or Search Generative Experience, is Google's new AI-driven system that generates content to enhance organic search results based on a user's query. Think of it as Google's AI providing more tailored answers to your questions."
+  - q: "Does Google search really use generative AI?"
+    a: "Absolutely! Google has been integrating AI into its search for years, with the latest being the Search Generative Experience."
+  - q: "Wait, so Google can generate content on the fly?"
+    a: "Not quite, not yet at least. Unlike ChatGPT, Google SGE will be a new way to search Google's search engine. Google has an AI Chatbot named Bard. It's worth noting Bard is built for research, whereas ChatGPT is the better content writer."
+  - q: "I've heard of BERT before. How's SGE different?"
+    a: "While BERT was all about understanding the context of words in search queries, Google's newer models like MUM and SGE take it up a notch. They're more about understanding and generating content that aligns closely with user intent."
+  - q: "What is Google's generative AI examples?"
+    a: "One example is how Google search now understands and responds to longer, conversational-style queries by using tech like BERT and MUM. SGE takes it further by generating relevant content for search results."
+  - q: "I'm in the content game. How does this affect my SEO strategy?"
+    a: "It's all about shifting focus. Content should be of high quality, informative, and in tune with natural language queries. It's more about serving the user now than just pleasing the search engine."
+  - q: "How do I get Google search generative experience?"
+    a: "As a user, you'll automatically see it in action when you use Google Search. As a content creator, focus on quality content, and you'll naturally align with Google's SGE."
+  - q: "Okay, and how do I access Google SGE?"
+    a: "1) Click on Google Search Labs Icon on Google Chrome. 2) Enable the SGE Button. 3) Click I Agree in the pop-up. 4) Click on Try an Example. You can access SGE in the latest version of the Google app (Android or iOS) or on a Chrome desktop/browser. Not all accounts are eligible to access Search Labs."
+  - q: "Which country has Google SGE?"
+    a: "Google's SGE is currently only available in the US (English)."
+  - q: "So, does this mean keyword stuffing is totally out?"
+    a: "Ralph Marino, our SEO expert, would say: \"It's about genuine content for the user.\" Keyword stuffing hasn't worked for a while now & definitely won't fly in this AI-driven world. Focus on genuine, user-centric content!"
 ---
+
 In the ever-evolving/changing world of search engines and digital marketing, Google's latest innovation, the [Search Generative Experience (SGE)](https://labs.google/sge/), has rapidly become a focal point for content creators and SEO specialists alike. But what exactly is this new feature, and more importantly, how does it impact the complex interplay of search results, keyword research, and high-quality content creation? Let's dive in and talk about it!
 
 For many of us, the way we interact with search engines is second nature. We input our query, and in return, we're presented with a handful of search results, often spanning numerous web pages. (Even though as SEOs we know - nobody makes it past page 1!) The role of search users in this equation is clear – they drive the demand for relevant, high-quality content. The role of AI, particularly generative AI, is somewhat murkier, but that's where Google's SGE steps in.
@@ -44,52 +66,5 @@ Navigating the digital realm, especially with the constant shifts in algorithms 
 For those looking to thrive in this new era, it's crucial to understand not only _what is Google SGE_, but also how to leverage its features for success. After all, in the realm of digital marketing, staying ahead of the curve is the absolute key to success.
 
 [![](https://growthlocal.com/wp-content/uploads/2023/10/Ralph_Marino_LinkedIn_Bio.png)](https://www.linkedin.com/in/ralphmarino/)
-
-## Google SGE Frequently Asked Questions
-
-****What's this Google SGE I keep hearing about?****
-
-Google SGE, or Search Generative Experience, is Google's new AI-driven system that generates content to enhance organic search results based on a user's query. Think of it as Google's AI providing more tailored answers to your questions.
-
-****Does Google search really use generative AI?****
-
-Absolutely! Google has been integrating AI into its search for years, with the latest being the Search Generative Experience.
-
-****Wait, so Google can generate content on the fly?****
-
-Not quite, not yet at least. Unlike ChatGPT, Google SGE will be a new way to search Google's search engine. Google has an AI Chatbot named Bard. It's worth noting Bard is built for research, whereas ChatGPT is the better content writer.
-
-**I've heard of BERT before. How's SGE different?**
-
-While BERT was all about understanding the context of words in search queries, Google's newer models like MUM and SGE take it up a notch. They're more about understanding and generating content that aligns closely with user intent.
-
-**What is Google's generative AI examples?**
-
-One example is how Google search now understands and responds to longer, conversational-style queries by using tech like BERT and MUM. SGE takes it further by generating relevant content for search results.
-
-**I'm in the content game. How does this affect my SEO strategy?**
-
-It's all about shifting focus. Content should be of high quality, informative, and in tune with natural language queries. It's more about serving the user now than just pleasing the search engine.
-
-**How do I get Google search generative experience?**
-
-As a user, you'll automatically see it in action when you use Google Search. As a content creator, focus on quality content, and you'll naturally align with Google's SGE.
-
-**Okay, and how do I access Google SGE?**
-
-1) Click on Google Search Labs Icon on Google Chrome.
-2) Enable the SGE Button.
-3) Click I Agree in the pop-up.
-4) Click on Try an Example.
-You can access SGE in the latest version of the Google app (Android or iOS) or on a Chrome desktop/browser.
-_Not all accounts are eligible to access Search Labs._
-
-**Which country has Google SGE?**
-
-Google's SGE is currently only available in the US (English).
-
-**So, does this mean keyword stuffing is totally out?**
-
-Ralph Marino, our SEO expert, would say: "It's about genuine content for the user." Keyword stuffing hasn't worked for a while now & definitely won't fly in this AI-driven world. Focus on genuine, user-centric content!
 
 **Want the full playbook?** Read our step-by-step guide on [how to get your business shown in AI search](/blog/get-your-business-shown-in-ai-search) — covering GEO, AI Overviews, and getting cited by ChatGPT, Gemini, and Perplexity.

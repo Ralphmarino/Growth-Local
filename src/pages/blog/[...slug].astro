@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import AuthorCardCompact from '../../components/AuthorCardCompact.astro';
+import BlogFaq from '../../components/BlogFaq.astro';
 import ArticleSchema from '../../components/ArticleSchema.astro';
 import BlogFaqSchema from '../../components/BlogFaqSchema.astro';
 import { ralph } from '../../data/author';
@@ -71,6 +72,7 @@ const showUpdated =
         <div class="prose-gl">
           <Content />
         </div>
+        <BlogFaq post={post} />
         <AuthorCardCompact />
       </div>
     </article>

@@ -108,32 +108,6 @@ We have spent years earning rankings for local and national businesses. Now we m
 
 **[Book a free AI visibility audit with Growth Local →](/#contact)** and find out what the AI engines are saying about your business right now, and how to change it.
 
-## Frequently Asked Questions
-
-### What is the difference between SEO and GEO?
-
-SEO optimizes your site to rank in traditional search results, using signals like keywords, backlinks, and user engagement. GEO optimizes your content to be cited inside AI-generated answers, prioritizing factual density, standalone passages, structured data, and entity clarity. They are complementary: SEO gets you discovered and trusted, GEO gets you quoted.
-
-### How do I know if ChatGPT or Google AI is mentioning my business?
-
-Ask them. Run your key customer questions through ChatGPT, Gemini, Perplexity, and Google's AI Overviews each month and record which businesses get named. For ongoing tracking at scale, AI visibility monitoring tools can measure your mention rate and share of voice across platforms. Growth Local includes this tracking in every GEO engagement.
-
-### Does my Google ranking affect whether AI cites me?
-
-Partially. Pages ranking at position one in Google have about a 58% chance of being cited in AI Overviews, so rankings still help. But chat-based engines like ChatGPT pull heavily from sources that do not rank well in Google at all, so ranking alone is not enough and not ranking is not disqualifying.
-
-### How long does it take to show up in AI answers?
-
-Technical fixes like unblocking AI crawlers can produce results within weeks, since chat engines retrieve live web content. Building the entity authority and review signals that earn recommendations in competitive categories typically takes 3-6 months of consistent work, similar to SEO timelines.
-
-### Do small local businesses really need GEO, or is this just for big brands?
-
-Local businesses arguably benefit most. When someone asks an AI "who should I call for X in my city," the model has to name specific local providers, and it chooses based on reviews, consistent business information, and content that proves expertise. A well-optimized local business can outcompete larger brands in its own service area.
-
-### Will blocking AI crawlers protect my content?
-
-It will mostly just remove you from the answers. If GPTBot or PerplexityBot cannot read your site, those engines cannot cite you, and your competitors who allow crawling become the sources instead. For most businesses, visibility is worth far more than exclusion.
-
 ## Sources
 
 - Aggarwal et al., "GEO: Generative Engine Optimization" (KDD 2024) — [arXiv:2311.09735](https://arxiv.org/abs/2311.09735)
