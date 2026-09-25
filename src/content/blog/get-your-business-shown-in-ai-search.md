@@ -39,7 +39,7 @@ The good news: getting cited by AI is a learnable, repeatable process. This guid
 
 ## What Is Generative Engine Optimization (GEO)?
 
-Generative Engine Optimization (GEO) is the practice of improving your brand's chances of being mentioned, cited, or recommended in AI-generated answers across platforms like ChatGPT, Gemini, Perplexity, Claude, and Google AI Overviews. You may also see it called AEO (Answer Engine Optimization) or AI SEO. The labels differ; the goal is the same: when an AI writes an answer in your category, your business is part of it.
+Generative Engine Optimization (GEO) is the practice of improving your brand's chances of being mentioned, cited, or recommended in AI-generated answers across platforms like ChatGPT, Gemini, Perplexity, Claude, and Google AI Overviews. You may also see it called [AEO (Answer Engine Optimization)](/blog/answer-engine-optimization) or AI SEO. The labels differ; the goal is the same: when an AI writes an answer in your category, your business is part of it.
 
 The term was formalized by [Princeton researchers](https://arxiv.org/abs/2311.09735), whose study showed that targeted optimization can increase a source's visibility in generative AI answers by up to 40%. The highest-impact tactics were adding quotations (+27.8%) and adding statistics (+25.9%). In other words, evidence-dense content wins.
 
